@@ -72,17 +72,17 @@ class HomepageController extends Controller
         return view('user.acarainfo.index', compact('data', 'category_widget','tag'));
     }
 
-    public function list_donation(){
+    public function list_product(){
 
-        $items = DonationPackage::where('target_waktu', '>=', now())->with(['galleries'])->paginate(8);
+        $items = Product::take(4)->get();
 
-        $donation_package = DonationPackage::count();
+        $product = Product::count();
         $transaction = Transaction::count();
         $transaction_pending = Transaction::where('transaction_status', 'PENDING')->count();
         $transaction_success = Transaction::where('transaction_status', 'SUCCESS')->count();
 
         
-        return view('user.pelayananjenazah.donationlist', compact('items','donation_package','transaction','transaction_pending','transaction_success'));
+        return view('user.pelayananjenazah.productlist', compact('items','product','transaction','transaction_pending','transaction_success'));
     }
 
 }

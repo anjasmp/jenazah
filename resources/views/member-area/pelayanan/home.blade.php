@@ -14,13 +14,15 @@
 
     <div class="card-group">
         <div class="card border-center">
+
         @forelse ($item as $items)
+        @if ($item->transaction_status === 'SUCCESS')
         <a href="{{ route ('pelayanan.create')}}" class="btn btn-danger">
             <div class="card-body">
                 <h2>KLIK DISINI !</h2>
             </div>
             </a>
-        @empty
+        @else
         <div class="card-group">
             <div class="card border-center">
                 <a href="{{ route ('transaksi.index')}}" class="btn btn-danger">
@@ -29,8 +31,26 @@
                 </div>
                 </a>
             </div>
+        </div>
+        @endif
+        @empty
+        <div class="card-group">
+            <div class="card border-center">
+                <a href="{{ route ('product.list')}}" class="btn btn-danger">
+                <div class="card-body">
+                    <h2>Daftar Keanggotaan</h2>
+                </div>
+                </a>
             </div>
+        </div>
         @endforelse
+        
+            
+        
+     
+        
+       
+        
         </div>
         </div>
 

@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('src/assets/images/favicon.png')}}">
-    <title>PENGADUAN MUSIBAH KEMATIAN</title>
+    <title>DAFTAR PENGADUAN MUSIBAH KEMATIAN</title>
    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -98,11 +98,14 @@
 }
 
 .invoice table {
+    table-layout:fixed;
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
     margin-bottom: 20px
 }
+
+
 
 .invoice table td,.invoice table th {
     padding: 15px;
@@ -111,8 +114,6 @@
 }
 
 .invoice table th {
-    white-space: nowrap;
-    font-weight: 400;
     font-size: 100%;
     background: #008084;
     color: #fff;
@@ -207,91 +208,94 @@
 
 <body>
 
+    <div id="invoice">
 
-<div id="invoice">
-
-    <div class="invoice overflow-auto">
-        <div style="min-width: 600px">
-            <header>
-                <div class="row">
-                    <div class="col img" style="float: left">
-                        <a target="_blank" href="#">
-                            <img src="{{ public_path('src/assets/images/upj-1.png') }}" data-holder-rendered="true" />
-                            </a>
+        <div class="invoice overflow-auto">
+            <div style="min-width: 600px">
+               
+                <header>
+                    <div class="row">
+                        <div class="col img" style="float: left">
+                            <a target="_blank" href="#">
+                                <img src="{{ public_path('src/assets/images/upj-1.png') }}" data-holder-rendered="true" />
+                                </a>
+                        </div>
+                        <div class="col company-details">
+                            <h2 class="name">
+                                Unit Pelayanan Jenazah <br> Masjid Baitul Haq
+                            </h2>
+                            <div>Jl. Puri Gading Raya, Kel. Jatimelati, Kec. Pondok Melati, <br>
+                             Kota Bks, Jawa Barat 17415 - Indonesia</div>
+                            <div> +62 852 1327 4473</div>
+                            <div>upj@upjmasjidbaitulhaq.com</div>
+                        </div>
                     </div>
-                    <div class="col company-details">
-                        <h2 class="name">
-                            Unit Pelayanan Jenazah <br> Masjid Baitul Haq
-                        </h2>
-                        <div>Jl. Puri Gading Raya, Kel. Jatimelati, Kec. Pondok Melati, <br>
-                         Kota Bks, Jawa Barat 17415 - Indonesia</div>
-                        <div> +62 852 1327 4473</div>
-                        <div>upj@upjmasjidbaitulhaq.com</div>
+                </header>
+                <main>
+    
+                    <div class="row contacts">
+                        <div class="col invoice-details">
+                            <h1 class="invoice-id">PENGADUAN MUSIBAH KEMATIAN</h1
+                        </div>
                     </div>
-                </div>
-            </header>
-            <main>
-
-                <div class="row contacts">
-                    <div class="col invoice-details">
-                        <h1 class="invoice-id">PENGADUAN MUSIBAH KEMATIAN</h1
-                    </div>
-                </div>
+                    
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Penanggung Jawab</th>
+                                <th>Nama Alm</th>
+                                <th>Bin/Binti</th>
+                                <th>Waktu Wafat</th>
+                                <th>Tanggal Wafat</th>
+                                <th>Tempat Wafat</th>
+                                <th>Tempat Pemakaman</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
                 
-                <table class="table table-borderless">
-        
-        
-                    <tr>
-                        <th>ID</th>
-                        <td>{{ $item->id }}</td>
-                    </tr>
-                    <tr>
-                        <th>Nama Alm</th>
-                        <td>{{ $item->user_families->name }}</td>
-                    </tr>
-                    <tr>
-                        <th>Bin/Binti</th>
-                        <td>{{ $item->nama_ayah }}</td>
-                    </tr>
-            
-                    <tr>
-                        <th>Tanggal Wafat</th>
-                        <td>{{ $item->tanggal_wafat }}</td>
-                    </tr>
-                    <tr>
-                        <th>Waktu Wafat</th>
-                        <td>{{ $item->waktu_wafat }}</td>
-                    </tr>
-                    <tr>
-                        <th>Tempat Wafat</th>
-                        <td>{{ $item->tempat_wafat }}</td>
-                    </tr>
-                    <tr>
-                        <th>Tempat Pemakaman</th>
-                        <td>{{ $item->tempat_pemakaman }}</td>
-                    </tr>
-                    {{-- <tr>
-                        <th>Scan KK/KTP</th>
-                        <td><img src="{{ Storage::url($item->kk_atau_ktp) }}" alt="" style="width: 150px" class="img-thumbnail" /></td>
-                    </tr> --}}
-            
-                    <tr>
-                        <th>Status</th>
-                        <td>{{ $item->service_status }}</td>
-                    </tr>
-            
-            
-            
-                </table>
+                        <tbody>
+                            @forelse ($items as $key => $item)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $item->user_families->user_detail->user->name }}</td>
+                                <td>{{ $item->user_families->name }}</td>
+                                <td>{{ $item->nama_ayah }}</td>
+                                <td>{{ $item->waktu_wafat }}</td>
+                                <td>{{ Carbon\Carbon::parse($item->tanggal_wafat)->format('d-m-Y') }}</td>
+                                <td>{{ $item->tempat_wafat }}</td>
+                                <td>{{ $item->tempat_pemakaman }}</td>
+                                
+                                @if ($item->service_status == 'ACCEPTED')
+                                <td><span class="badge badge-pill badge-primary" >{{ $item->service_status}}</span></td>
+                                @else @if ($item->service_status == 'CANCEL')
+                                <td><span class="badge badge-pill badge-danger" >{{ $item->service_status}}</span></td>
+                                @else
+                                <td><span class="badge badge-pill badge-warning" >{{ $item->service_status}}</span></td>
+                                @endif
+                                @endif
                 
-            <footer>
-               Dicetak {{ date('Y-m-d H:i:s') }}
-            </footer>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="7" class="text-center">Data kosong</td>
+                
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+
+                </main>
+                <footer>
+                    Dicetak {{ date('Y-m-d H:i:s') }}
+                 </footer>
+            </div>
+            <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+            <div></div>
         </div>
-        <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
-        <div></div>
     </div>
-</div>
+
+    
 
 
      <script>

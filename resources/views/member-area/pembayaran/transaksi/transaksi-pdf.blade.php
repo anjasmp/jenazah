@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('src/assets/images/favicon.png')}}">
-    <title>Invoice</title>
+    <title>INVOICE</title>
    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -35,13 +35,23 @@
     border-bottom: 1px solid #3989c6
 }
 
-.invoice .company-details {
-    text-align: right
+.invoice .img{
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: left;
+    margin-left: 20px
 }
 
-.invoice .company-details .name {
+.invoice .company-details{
     margin-top: 0;
-    margin-bottom: 0
+    margin-bottom: 0;
+    margin-left: 20px
+}
+
+
+.invoice .company-details .name {
+    margin-top: -30px;
+    margin-bottom: 0;
 }
 
 .invoice .contacts {
@@ -167,9 +177,9 @@
     padding: 8px 0
 }
 
-.currSign:before {
+/* .currSign:before {
     content: 'Rp';
-}
+} */
 
 @media print {
     .invoice {
@@ -198,19 +208,26 @@
 
     <div class="invoice overflow-auto">
         <div style="min-width: 600px">
-            <header>
-                <div class="row">
-                    <div class="col company-details">
-                        <h2 class="name">
-                            Unit Pelayanan Jenazah Masjid Baitul Haq
-                        </h2>
-                        <div>Jl. Puri Gading Raya, Kel. Jatimelati, Kec. Pondok Melati, <br>
-                         Kota Bks, Jawa Barat 17415 - Indonesia</div>
-                        <div> +62 852 1327 4473</div>
-                        <div>upj@upjmasjidbaitulhaq.com</div>
+           
+                <header>
+                    <div class="row">
+                        <div class="col img" style="float: left">
+                            <a target="_blank" href="#">
+                                <img src="{{ public_path('src/assets/images/upj-1.png') }}" data-holder-rendered="true" />
+                                </a>
+                        </div>
+                        <div class="col company-details">
+                            <h2 class="name">
+                                Unit Pelayanan Jenazah <br> Masjid Baitul Haq
+                            </h2>
+                            <div>Jl. Puri Gading Raya, Kel. Jatimelati, Kec. Pondok Melati, <br>
+                             Kota Bks, Jawa Barat 17415 - Indonesia</div>
+                            <div> +62 852 1327 4473</div>
+                            <div>upj@upjmasjidbaitulhaq.com</div>
+                        </div>
                     </div>
-                </div>
-            </header>
+                </header>
+            
             <main>
 
                 @foreach ($items as $item)
@@ -250,9 +267,9 @@
                             <td class="text-left">{{ $item->product->title }}</td>
                             <td class="text-left">{{ $item->product->type }}</td>
                             <td class="text-left">{{ Carbon\Carbon::parse($item->masa_aktif)->format('d-m-Y') }}</td>
-                            <td class="unit"><div class="myDIV">{{ $item->product->register }}</div></td>
-                            <td class="unit"><div class="myDIV">{{ $item->product->price }}</div></td>
-                            <td class="total"><div class="myDIV">{{ $item->transaction_total }}</div></td>
+                            <td class="unit"><span style="cellspacing="0" cellpadding="0"">Rp. </span>{{ $item->product->register }}</td>
+                            <td class="unit"><span style="cellspacing="0" cellpadding="0"">Rp. </span>{{ $item->product->price }}</td>
+                            <td class="total"><span style="cellspacing="0" cellpadding="0"">Rp. </span>{{ $item->transaction_total }}</td>
                         </tr>
                         @empty
                         <tr>
@@ -267,13 +284,13 @@
                         <tr>
                             <td colspan="3"></td>
                             <td colspan="3">SUBTOTAL</td>
-                            <td><div class="myDIV">{{ $item->transaction_total }}</div></td>
+                            <td><span style="cellspacing="0" cellpadding="0"">Rp. </span>{{ $item->transaction_total }}</td>
                         </tr>
                         
                         <tr>
                             <td colspan="3"></td>
                             <td colspan="3">GRAND TOTAL</td>
-                            <td><div class="myDIV">{{ $item->transaction_total }}</div></td>
+                            <td><span style="cellspacing="0" cellpadding="0"">Rp. </span>{{ $item->transaction_total }}</td>
                         </tr>
                          @endforeach
                     </tfoot>
@@ -304,13 +321,13 @@
             }
         });
 
-        let x = document.querySelectorAll(".myDIV"); 
-    for (let i = 0, len = x.length; i < len; i++) { 
-        let num = Number(x[i].innerHTML) 
-                  .toLocaleString('en'); 
-        x[i].innerHTML = num; 
-        x[i].classList.add("currSign"); 
-    } 
+    //     let x = document.querySelectorAll(".myDIV"); 
+    // for (let i = 0, len = x.length; i < len; i++) { 
+    //     let num = Number(x[i].innerHTML) 
+    //               .toLocaleString('en'); 
+    //     x[i].innerHTML = num; 
+    //     x[i].classList.add("currSign"); 
+    // } 
 
 
         

@@ -30,9 +30,11 @@ class ServiceController extends Controller
         $items = Service::with([
             'transactions','user_families.user_detail.user'
         ])->orderBy('id', 'DESC')->get();
+       
          set_time_limit (300);
         
-        $pdf = PDF::loadView('admin.pengaduan-musibah.service-pdf', ['items'=>$items]);
+        $pdf = PDF::loadView('admin.pengaduan-musibah.service-list-pdf', ['items'=>$items]);
+        $pdf->setPaper('A4', 'landscape');
         $pdf->save(storage_path().'_pengaduan-musibah.pdf');
         return $pdf->stream();
     }
@@ -69,7 +71,12 @@ class ServiceController extends Controller
         $item = Service::with([
             'transactions','user_families'
             ])->findOrFail($id);
+
+            set_time_limit (300);
         
+         $pdf = PDF::loadView('admin.pengaduan-musibah.service-pdf', ['item'=>$item]);
+        $pdf->save(storage_path().'_pengaduan-musibah.pdf');
+        return $pdf->stream();
         
         return view('admin.pengaduan-musibah.detail', compact('item'));
     }

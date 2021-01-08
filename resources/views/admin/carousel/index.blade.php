@@ -27,7 +27,8 @@
                 <tr>
                     <td>{{ $key + 1 }}</td>
                     <td>
-                        <img src="{{ Storage::url($item->image) }}" alt="" style="width: 150px" class="img-thumbnail" />
+                        <a data-fancybox="gallery" href="{{ Storage::url($item->image) }}"><img src="{{ Storage::url($item->image) }}" style="width:100%;max-width:300px">
+                        </a>
                     </td>
                     <td>
                         <a href="{{ route('carousel.edit', $item->id) }}" class="btn btn-info">
@@ -57,6 +58,13 @@
 
 
 @endsection
+
+{{-- FANCYBOX --}}
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+{{-- FANCYBOX --}}
 
 @push('scripts')
 <script src="{{ asset('user/assets/js/datatables.min.js')}}"></script>

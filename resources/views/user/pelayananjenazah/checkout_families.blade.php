@@ -184,27 +184,34 @@
                   </div>
                 </div>
               </div>
-              @if ($item->user_detail->user_families === null)
-              <div class="join-container">
-                <a
-                  href="{{ route('product.detail', $item->product->slug)}}"
-                  class="btn btn-block btn-join-now mt-3 py-2"
-                  >Batal daftar</a
-                >
-              </div>
-              @else
+              
+
+              @if(Session::has('failed'))
+                  <div class="alert alert-success" role="alert">
+                   {{ Session('failed')}}
+                  </div>
+                  @endif
 
               <div class="join-container">
                 <a
                   href="{{ route ('product.checkout-success', $item->id)}}"
                   class="btn btn-block btn-join-now mt-3 py-2"
-                  >Saya Telah Melakukan Pembayaran</a
+                  >Saya Sudah Melakukan Pembayaran</a
                 >
               </div>
               <div class="text-center mt-3 mb-5">
                 <a href="{{ route('product.detail', $item->product->slug)}}" class="text-muted">Batal Daftar</a>
               </div>
-              @endif
+             
+              {{-- <div class="join-container">
+                <a
+                  href="{{ route('product.detail', $item->product->slug)}}"
+                  class="btn btn-block btn-join-now mt-3 py-2"
+                  >Batal daftar</a
+                >
+              </div> --}}
+             
+              
               
             </div>
           </div>

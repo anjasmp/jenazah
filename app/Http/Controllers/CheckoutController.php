@@ -36,7 +36,7 @@ class CheckoutController extends Controller
         }])->exists();
 
         if ($user) {
-            return redirect()->back();
+            return redirect()->back()->with('failed','Kamu sudah terdaftar! Kunjungi MEMBER AREA');
         }
         
         $product = Product::findOrFail($id);
@@ -76,7 +76,7 @@ class CheckoutController extends Controller
             'alamat' => 'required|max:60',
             'telepon' => 'required|string',
             'pekerjaan' => 'string|max:30',
-            'no_kk' => 'required|string',
+            'no_kk' => 'required|string|unique:user_details,no_kk',
             'scan_ktp' => 'required|image',
             'scan_kk' => 'required|image'
 
@@ -108,7 +108,7 @@ class CheckoutController extends Controller
         echo $user_details->no_anggota;
 
 
-        return redirect()->route('product.checkoutfamilies', $id);
+        return redirect()->route('product.checkoutfamilies', $id)->with('success','Yeay! Berhasil mengisi data diri, selanjutnya lengkapi data anggota keluarga');
     }
 
 
@@ -116,6 +116,7 @@ class CheckoutController extends Controller
     {
         $item = Transaction::with(['user','product','user_detail.user_families'])->findOrFail($id);
 
+        
         // return $item;
         // $items = UserFamilies::Where('user_details_id', Auth::id())->get();
         
@@ -128,13 +129,16 @@ class CheckoutController extends Controller
     
     public function createfamilies (Request $request, $id)
     {
+      
+
+
         $data = $request->all();
 
         $this->validate($request, [
-            'name' => 'max:30',
-            'tempat_lahir' => 'string|max:255',
-            'tanggal_lahir' => 'date',
-            'nik' => 'string|max:255|unique:user_families,nik'
+            'name' => 'required|max:30',
+            'tempat_lahir' => 'required|string|max:255',
+            'tanggal_lahir' => 'required|date',
+            'nik' => 'required|string|max:255|unique:user_families,nik'
         ]);
 
 
@@ -154,6 +158,7 @@ class CheckoutController extends Controller
             'userfamily_status' => 'PENDING'
 
         ]);
+
 
 
         return redirect()->route('product.checkoutfamilies', $id)->with('success','Data berhasil ditambah');

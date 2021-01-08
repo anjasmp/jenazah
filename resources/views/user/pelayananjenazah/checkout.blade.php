@@ -28,6 +28,8 @@
                 </div>
                 @endif
 
+                
+
                 <p>Nama : <span style="font-weight: bold; color: #039ea3">{{ Auth::user()->name }}</span> </p>
                 <p>Email : <span style="font-weight: bold; color: #039ea3">{{ Auth::user()->email }}</span> </p>
                 

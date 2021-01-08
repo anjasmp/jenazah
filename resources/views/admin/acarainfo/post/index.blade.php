@@ -30,7 +30,7 @@
                 @foreach ($post as $key => $result)
                 <tr>
                     <td>{{ $key + 1 }}</td>
-                    <td>{{ $result->title }}</td>
+                    <td>{{ substr($result->title, 0, 20) }}...</td>
                     <td>{{ $result->category->name }}</td>
                     <td>@foreach($result->tags as $tag)
                         <ul>
@@ -39,9 +39,9 @@
                         @endforeach
                     </td>
                     <td>{{ $result->users->name }}</td>
-                    <td><img src="{{ asset( $result->image )}}" alt=""
-                            style="border-radius: 10px; width: 100px; height: 100px; box-shadow: 0 10px 29px 0 rgba(68, 88, 144, 0.1);">
-                    </td>
+
+                    <td><a data-fancybox="gallery" href="{{ asset( $result->image )}}"><img src="{{ asset( $result->image )}}" style="width:100%;max-width:100px"></a></td>
+
                     <td>
 
                         <form action="{{ route('post.destroy', $result->id)}}" method="POST">
@@ -62,6 +62,13 @@
 
 
 @endsection
+
+{{-- FANCYBOX --}}
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+{{-- FANCYBOX --}}
 
 @push('scripts')
 <script src="{{ asset('user/assets/js/datatables.min.js')}}"></script>

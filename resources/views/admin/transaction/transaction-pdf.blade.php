@@ -18,176 +18,191 @@
 
 
 <style type="text/css">
-        #invoice{
-    padding: 30px;
+    #invoice{
+padding: 30px;
 }
 
 .invoice {
-    position: relative;
-    background-color: #FFF;
-    min-height: 680px;
-    padding: 15px
+position: relative;
+background-color: #FFF;
+min-height: 680px;
+padding: 15px
 }
 
 .invoice header {
-    padding: 10px 0;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #3989c6
+padding: 10px 0;
+margin-bottom: 20px;
+border-bottom: 1px solid #3989c6
 }
 
-.invoice .company-details {
-    text-align: right
+.invoice .img{
+margin-top: 0;
+margin-bottom: 0;
+text-align: left;
+margin-left: 20px
 }
+
+.invoice .company-details{
+margin-top: 0;
+margin-bottom: 0;
+margin-left: 20px
+}
+
 
 .invoice .company-details .name {
-    margin-top: 0;
-    margin-bottom: 0
+margin-top: -30px;
+margin-bottom: 0;
 }
 
 .invoice .contacts {
-    margin-bottom: 20px
+margin-bottom: 20px
 }
 
 .invoice .invoice-to {
-    text-align: left
+text-align: left
 }
 
 .invoice .invoice-to .to {
-    margin-top: 0;
-    margin-bottom: 0
+margin-top: 0;
+margin-bottom: 0
 }
 
 .invoice .invoice-details {
-    text-align: right
+text-align: right
 }
 
 .invoice .invoice-details .invoice-id {
-    margin-top: 0;
-    color: #008084
+margin-top: 0;
+color: #008084;
+text-align: center;
+
 }
 
 .invoice main {
-    padding-bottom: 50px
+padding-bottom: 50px
 }
 
 .invoice main .thanks {
-    margin-top: -100px;
-    font-size: 2em;
-    margin-bottom: 50px
+margin-top: -100px;
+font-size: 2em;
+margin-bottom: 50px
 }
 
 .invoice main .notices {
-    padding-left: 6px;
-    border-left: 6px solid #008084;
+padding-left: 6px;
+border-left: 6px solid #008084;
 }
 
 .invoice main .notices .notice {
-    font-size: 1.2em
+font-size: 1.2em
 }
 
 .invoice table {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    margin-bottom: 20px
+table-layout:fixed;
+width: 100%;
+border-collapse: collapse;
+border-spacing: 0;
+margin-bottom: 20px
 }
 
+
+
 .invoice table td,.invoice table th {
-    padding: 15px;
-    background: #eee;
-    border-bottom: 1px solid #fff
+padding: 8px;
+background: #eee;
+border-bottom: 1px solid #fff
 }
 
 .invoice table th {
-    white-space: nowrap;
-    font-weight: 400;
-    font-size: 16px
+font-size: 100%;
+background: #008084;
+color: #fff;
+font-weight: bold;
+text-align: left;
 }
 
 .invoice table td h3 {
-    margin: 0;
-    font-weight: 400;
-    color: #008084;
-    font-size: 1.2em
+margin: 0;
+font-weight: 400;
+color: #008084;
+font-size: 1.2em;
+text-align: center
+
 }
 
 .invoice table .qty,.invoice table .total,.invoice table .unit {
-    text-align: right;
-    font-size: 1.2em
+text-align: right;
+font-size: 1.2em
 }
 
 .invoice table .no {
-    color: #fff;
-    font-size: 1.6em;
-    background: #008084
+color: #fff;
+font-size: 1.6em;
+background: #008084
 }
 
 .invoice table .unit {
-    background: #ddd
+background: #ddd
 }
 
-.invoice table .total {
-    background: #008084;
-    color: #fff
-}
 
 .invoice table tbody tr:last-child td {
-    border: none
+border: none
 }
 
 .invoice table tfoot td {
-    background: 0 0;
-    border-bottom: none;
-    white-space: nowrap;
-    text-align: right;
-    padding: 10px 20px;
-    font-size: 1.2em;
-    border-top: 1px solid #aaa
+background: 0 0;
+border-bottom: none;
+white-space: nowrap;
+text-align: right;
+padding: 10px 20px;
+font-size: 1.2em;
+border-top: 1px solid #aaa
 }
 
 .invoice table tfoot tr:first-child td {
-    border-top: none
+border-top: none
 }
 
 .invoice table tfoot tr:last-child td {
-    color: #008084;
-    font-size: 1.4em;
-    border-top: 1px solid #008084;
+color: #008084;
+font-size: 1.4em;
+border-top: 1px solid #008084;
 }
 
 .invoice table tfoot tr td:first-child {
-    border: none
+border: none
 }
 
 .invoice footer {
-    width: 100%;
-    text-align: center;
-    color: #777;
-    border-top: 1px solid #aaa;
-    padding: 8px 0
+width: 100%;
+text-align: center;
+color: #777;
+border-top: 1px solid #aaa;
+padding: 8px 0
 }
 
 .currSign:before {
-    content: 'Rp';
+content: 'Rp';
 }
 
 @media print {
-    .invoice {
-        font-size: 11px!important;
-        overflow: hidden!important
-    }
-
-    .invoice footer {
-        position: absolute;
-        bottom: 10px;
-        page-break-after: always
-    }
-
-    .invoice>div:last-child {
-        page-break-before: always
-    }
+.invoice {
+    font-size: 11px!important;
+    overflow: hidden!important
 }
-    </style>
+
+.invoice footer {
+    position: absolute;
+    bottom: 10px;
+    page-break-after: always
+}
+
+.invoice>div:last-child {
+    page-break-before: always
+}
+}
+</style>
 
 </head>
 
@@ -199,11 +214,15 @@
     <div class="invoice overflow-auto">
         <div style="min-width: 600px">
             <header>
-                
                 <div class="row">
+                    <div class="col img" style="float: left">
+                        <a target="_blank" href="#">
+                            <img src="{{ public_path('src/assets/images/upj-1.png') }}" data-holder-rendered="true" />
+                            </a>
+                    </div>
                     <div class="col company-details">
                         <h2 class="name">
-                            Unit Pelayanan Jenazah Masjid Baitul Haq
+                            Unit Pelayanan Jenazah <br> Masjid Baitul Haq
                         </h2>
                         <div>Jl. Puri Gading Raya, Kel. Jatimelati, Kec. Pondok Melati, <br>
                          Kota Bks, Jawa Barat 17415 - Indonesia</div>

@@ -50,7 +50,12 @@
         </div>
         <div class="join-container" style="margin-left: 10px; margin-right: 10px">
 
-          
+          @if(Session::has('failed'))
+                  <div class="alert alert-danger" role="alert">
+                   {{ Session('failed')}}
+                  </div>
+          @endif
+
           @auth
               <form action="{{ route('product.checkout-process', $item->id)}}" method="post">
                 @csrf

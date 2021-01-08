@@ -27,7 +27,9 @@
 
     <table class="table table-bordered">
         
-        @foreach ($items as $item)
+        @forelse ($items as $item)
+            
+     
         <tr>
             <th>Nomor Anggota</th>
             <td>{{ $item->no_anggota }}</td>
@@ -60,22 +62,35 @@
         </tr>
         <tr>
             <th>Scan KTP</th>
-            <td><img src="{{ Storage::url($item->scan_ktp) }}" alt="" style="width: 150px" class="img-thumbnail" /></td>
+            <td><a data-fancybox="gallery" href="{{ Storage::url($item->scan_ktp) }}"><img src="{{ Storage::url($item->scan_ktp) }}" style="width:100%;max-width:300px"></a></td>
+
         </tr>
         <tr>
             <th>Scan KK</th>
-            <td><img src="{{ Storage::url($item->scan_kk) }}" alt="" style="width: 150px" class="img-thumbnail" /></td>
+            <td><a data-fancybox="gallery" href="{{ Storage::url($item->scan_kk) }}"><img src="{{ Storage::url($item->scan_kk) }}" style="width:100%;max-width:300px"></a></td>
         </tr>
-        @endforeach
+        
+        <tr>
+            <td colspan="7" class="text-center">
+                <a href="{{ route ('info-tagihan.edit', $item->id)}}" class="btn btn-primary"><i class="fa fa-pencil-alt"> Ubah data</i>
+                </a>
+            </td>
+        </tr>
+        @empty
 
-            <tr>
-                <td colspan="7" class="text-center">
-                    <a href="{{ route ('info-tagihan.edit', $item->id)}}" class="btn btn-primary"><i class="fa fa-pencil-alt"> Ubah data</i>
-                    </a>
-                </td>
-            </tr>
+        <tr>
+            <td colspan="7" class="text-center">Data kosong</td>
+    
+        </tr>
+        
+        @endforelse
+
+            
         
     </table>
+
+    
+        
 {{-- 
     <br><br>
     <h3>Metode Pembayaran</h3>
@@ -109,6 +124,11 @@
 
 
 @endsection
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
 @push('scripts')
 <script src="{{ asset('src/ckeditor/ckeditor.js')}}"></script>

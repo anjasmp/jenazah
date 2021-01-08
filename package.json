@@ -23,6 +23,7 @@
     "vue-template-compiler": "^2.6.12"
   },
   "dependencies": {
+    "@fancyapps/fancybox": "^3.5.7",
     "ckeditor4": "^4.15.0",
     "mjml": "^4.7.1"
   },

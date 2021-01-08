@@ -97,6 +97,10 @@
         </div>
     </form>
 
+    <a href="{{ route('info-tagihan.index')}}" class="btn btn-primary">
+      <i class="fa fa-chevron-left"></i>
+      </a>
+
 </div>
 
 

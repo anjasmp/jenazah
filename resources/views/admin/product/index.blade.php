@@ -39,7 +39,7 @@
                     <td><div class="myDIV">{{ $item->price }}</div></td>
                     
                     <td>
-                        <a href="{{ route('product.edit', $item->id) }}" class="btn btn-info">
+                        <a href="{{ route('product.edit', $item->id) }}" class="btn btn-info ">
                         <i class="fa fa-pencil-alt"></i></a>
 
                         <form action="{{ route('product.destroy', $item->id) }}" method="POST" class="d-inline">

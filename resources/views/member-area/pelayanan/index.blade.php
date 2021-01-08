@@ -38,7 +38,7 @@
                     <td>{{ $item->waktu_wafat }}</td>
                     <td>{{ $item->tempat_wafat }}</td>
                     <td>{{ $item->tempat_pemakaman }}</td>
-                    <td><img src="{{ Storage::url($item->kk_atau_ktp) }}" alt="" style="width: 150px" class="img-thumbnail" /></td>
+                    <td><a data-fancybox="gallery" href="{{ Storage::url($item->kk_atau_ktp) }}"><img src="{{ Storage::url($item->kk_atau_ktp) }}" style="width:100%;max-width:100px"></a></td>
 
                     @if ($item->service_status == 'ACCEPTED')
                     <td><span class="badge badge-pill badge-primary" >{{ $item->service_status}}</span></td>
@@ -66,6 +66,11 @@
 
 
 @endsection
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
 @push('scripts')
 <script src="{{ asset('user/assets/js/datatables.min.js')}}"></script>

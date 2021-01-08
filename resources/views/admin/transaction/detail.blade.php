@@ -58,11 +58,13 @@
         </tr>
         <tr>
             <th>Scan KTP</th>
-            <td><img src="{{ Storage::url($item->user_detail->scan_ktp) }}" alt="" style="width: 150px" class="img-thumbnail" /></td>
+            <td><a data-fancybox="gallery" href="{{ Storage::url($item->user_detail->scan_ktp) }}"><img src="{{ Storage::url($item->user_detail->scan_ktp) }}" style="width:100%;max-width:300px"></a></td>
+
+    
         </tr>
         <tr>
             <th>Scan KK</th>
-            <td><img src="{{ Storage::url($item->user_detail->scan_kk) }}" alt="" style="width: 150px" class="img-thumbnail" /></td>
+            <td><a data-fancybox="gallery" href="{{ Storage::url($item->user_detail->scan_kk) }}"><img src="{{ Storage::url($item->user_detail->scan_kk) }}" style="width:100%;max-width:300px"></a></td>
         </tr>
      
         <tr>
@@ -138,7 +140,16 @@
 
 @endsection
 
+{{-- FANCYBOX --}}
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+{{-- FANCYBOX --}}
+
+
 @push('scripts')
+
 <script src="{{ asset('src/ckeditor/ckeditor.js')}}"></script>
 <script>
 CKEDITOR.replace( 'about' );

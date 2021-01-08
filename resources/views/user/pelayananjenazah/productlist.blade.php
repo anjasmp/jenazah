@@ -1,16 +1,17 @@
-<section id="pricing" class="pricing">
+@extends('user.default')
+
+@include('user.partials.header')
+@include('user.pelayananjenazah.intro')
+
+@section('content')
+<section id="pricing" class="pricing" style="margin-top: -390px !important">
   <div class="container">
 
-    <header class="section-header">
-      <h3>Pilihan Paket</h3>
-      <p>Pelayanan terpadu yang sesuai syariah</p>
-    </header>
-
-    <div class="row row-eq-height justify-content-center">
+    <div class="row row-eq-height justify-content-center" >
 
       @foreach ($items as $item)
       <div class="col-lg-4 col-md-6">
-        <div class="box aos-init aos-animate" data-aos="zoom-in-right" data-aos-delay="200">
+        <div class="box aos-init aos-animate" data-aos="zoom-in-right" data-aos-delay="200" >
           <h3>{{ $item->title }}</h3>
           <h4><div class="myDIV">{{ $item->price}}</div><span> / {{ $item->type }}</span></h4>
           <ul>
@@ -29,7 +30,13 @@
   </div>
 </section>
 
+@include('user.partials.footer')
+@endsection
+
+
+
 @push('scripts')
+
 <script>
   let x = document.querySelectorAll(".myDIV"); 
   for (let i = 0, len = x.length; i < len; i++) { 
@@ -39,4 +46,5 @@
       x[i].classList.add("currSign"); 
   } 
 </script>
+
 @endpush
