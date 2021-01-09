@@ -15,7 +15,7 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('invoice')->nullable();
+            $table->string('no_invoice')->nullable();
             $table->unsignedBigInteger('products_id');
             $table->unsignedBigInteger('users_id')->nullable();
             $table->date('masa_aktif')->nullable();

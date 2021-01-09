@@ -36,8 +36,8 @@ class Transaction extends Model
     public function getAutoNumberOptions()
     {
         return [
-            'id' => [
-                'format' => date('Y') . 'INV-?', // autonumber format. '?' will be replaced with the generated number.
+            'no_invoice' => [
+                'format' => 'INV-?', // autonumber format. '?' will be replaced with the generated number.
                 'length' => 5 // The number of digits in an autonumber
             ]
         ];

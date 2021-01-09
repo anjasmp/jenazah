@@ -20,7 +20,7 @@
         <table class="table table-striped" id="tablepost">
             <thead>
                 <tr>
-                    <th>No</th>
+                    <th>No Invoice</th>
                     <th>Paket Langganan</th>
                     <th>Nama</th>
                     <th>Masa Aktif</th>
@@ -33,7 +33,7 @@
             <tbody>
                 @forelse ($items as $key => $item)
                 <tr>
-                    <td>{{ $key + 1 }}</td>
+                    <td>{{ $item->no_invoice }}</td>
                     <td>{{ ($item->product->title) }}</td>
                     <td>{{ $item->user->name }}</td>
                     <td>{{ Carbon\Carbon::parse($item->masa_aktif)->format('d-m-Y') }}</td>

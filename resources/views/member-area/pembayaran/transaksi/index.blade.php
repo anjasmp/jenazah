@@ -28,7 +28,7 @@
             <tbody>
                 @forelse ($items as $key => $item)
                 <tr>
-                    <td>{{ $item->id }}</td>
+                    <td>{{ $item->no_invoice }}</td>
                     <td>{{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}</td>
                     <td>{{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}</td>
                     <td>{{ $item->transaction_status}}</td>
@@ -40,10 +40,16 @@
                         <i class="fa fa-download" aria-hidden="true"></i>
                         </a>
 
-                        @if ( $item->transaction_status == 'PENDING')
-                        <a href="{{ route ('transaksi.pay' , $item->id)}}" class="btn btn-danger">
+                        @if ( $item->transaction_status == 'SUCCESS')
+                            
+                        @else @if ($item->user_detail == null)
+                        
+                        @else
+                            <a href="{{ route ('transaksi.pay' , $item->id)}}" class="btn btn-danger">
                             <i class="fa fa-credit-card"> Pay</i>
                             </a>
+                        @endif
+                        
                         @endif
                         
                     </td>

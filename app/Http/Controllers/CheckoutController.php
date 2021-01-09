@@ -31,18 +31,15 @@ class CheckoutController extends Controller
 
     public function process(Request $request, $id)
     {
-        $user = Transaction::where('users_id', Auth::user()->id )->with(['transactions' => function($query) use($id){
-            $query->where('products_id', $id);
-        }])->exists();
-
-        if ($user) {
-            return redirect()->back()->with('failed','Kamu sudah terdaftar! Kunjungi MEMBER AREA');
-        }
+        
         
         $product = Product::findOrFail($id);
         // $user_details = UserDetails::findOrFail($id);
         // $user_families = UserFamilies::findOrFail($id);
         // $transactiondetail = TransactionDetail::all();
+
+        
+        
 
         $transaction = Transaction::create([
             'products_id' => $id,
@@ -53,16 +50,7 @@ class CheckoutController extends Controller
             'transaction_status' => 'IN_CART'
         ]);
 
-        // echo $transaction->id;
-
-        // UserFamilies::create([
-        //     'transactions_id' => $transaction->id,
-        //     'name' => Auth::user()->name,
-        //     'tempat_lahir' => $user_details->tempat_lahir,
-        //     'tanggal_lahir' => $user_details->tanggal_lahir,
-        //     'nik' => $user_details->no_kk
-
-        // ]);
+        echo $transaction->no_invoice;
 
 
         return redirect()->route('product.checkout', $transaction->id);
@@ -72,6 +60,14 @@ class CheckoutController extends Controller
 
     public function create (Request $request, $id)
     {
+        $user = UserDetails::where('users_id', Auth::user()->id )->with(['user_detail' => function($query) use($id){
+            $query->where('transactions_id', $id);
+        }])->exists();
+
+        if ($user) {
+            return redirect()->back()->with('failed','Kamu sudah terdaftar! Kunjungi MEMBER AREA');
+        }
+
         $this->validate($request, [
             'alamat' => 'required|max:60',
             'telepon' => 'required|string',

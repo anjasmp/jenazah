@@ -53,7 +53,9 @@
                         
                         <a href="{{ route('service.show', $item->id) }}" class="btn btn-dark" target="_blank" >
                             <i class="fa fa-download" aria-hidden="true"></i>
-                            </a>
+
+                        </a>
+
                         <a href="{{ route('service.edit', $item->id) }}" class="btn btn-warning">
                         <i class="fa fa-pencil-alt"></i></a>
 

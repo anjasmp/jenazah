@@ -11,10 +11,16 @@
 
         @forelse ($item as $items)
         @if ($items->transaction_status == 'SUCCESS')
+        @if ($loop->first)
         <h1 style="text-align: center;"><span style="color: #03877e;"> <br>PERMINTAAN PELAYANAN JENAZAH</span> </h1>
+        @endif
         @else
+
+        @if ($loop->first)
         <h1 style="text-align: center;"><span style="color: #03877e;"> <br>STATUS ANGGOTA : NON ACTIVE </span> </h1>
         @endif
+        @endif
+
         @empty
         <h1 style="text-align: center;"><span style="color: #03877e;"> <br>ANDA BELUM TERDAFTAR </span> </h1>
         @endforelse
@@ -30,12 +36,15 @@
 
         @forelse ($item as $items)
         @if ($items->transaction_status == 'SUCCESS')
+        @if ($loop->first)
         <a href="{{ route ('pelayanan.create')}}" class="btn btn-danger">
             <div class="card-body">
                 <h2>KLIK DISINI !</h2>
             </div>
             </a>
+        @endif
         @else
+        @if ($loop->first)
         <div class="card-group">
             <div class="card border-center">
                 <a href="{{ route ('transaksi.index')}}" class="btn btn-danger">
@@ -45,6 +54,7 @@
                 </a>
             </div>
         </div>
+        @endif
         @endif
         @empty
         <div class="card-group">

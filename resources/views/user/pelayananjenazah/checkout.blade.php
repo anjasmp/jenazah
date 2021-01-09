@@ -29,6 +29,13 @@
                 @endif
 
                 
+              @if(Session::has('failed'))
+              <div class="alert alert-danger" role="alert">
+               {{ Session('failed')}}
+              </div>
+              @endif
+
+                
 
                 <p>Nama : <span style="font-weight: bold; color: #039ea3">{{ Auth::user()->name }}</span> </p>
                 <p>Email : <span style="font-weight: bold; color: #039ea3">{{ Auth::user()->email }}</span> </p>

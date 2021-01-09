@@ -30,7 +30,7 @@ class TransaksiController extends Controller
     {
         $items = Transaction::with([
             'user','product','user_detail','services'
-        ])->Where('users_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
+        ])->Where('users_id', Auth::user()->id)->get();
          set_time_limit (300);
         
         $pdf = PDF::loadView('member-area.pembayaran.transaksi.transaksi-pdf', ['items'=>$items]);

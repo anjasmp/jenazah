@@ -278,7 +278,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="7" class="text-center">Data kosong</td>
+                                <td colspan="8" class="text-center">Data kosong</td>
                 
                             </tr>
                             @endforelse

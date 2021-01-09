@@ -20,6 +20,7 @@ class LanggananController extends Controller
             'user','product','user_detail.user_families','services'
         ])->Where('users_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
         
+        
       
 
         return view ('member-area.pembayaran.langganan.index', compact('items'));

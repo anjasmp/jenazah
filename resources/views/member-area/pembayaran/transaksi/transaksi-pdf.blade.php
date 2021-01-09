@@ -235,11 +235,11 @@
                     <div class="col invoice-to">
                         <div class="text-gray-light">INVOICE TO:</div>
                         <h2 class="to">{{ $item->user->name }}</h2>
-                        <div class="address">{{ $item->user_detail->alamat }}</div>
+                        {{-- <div class="address">{{ $item->user_detail->alamat }}</div> --}}
                         <div class="email">{{ $item->user->email }}</div>
                     </div>
                     <div class="col invoice-details">
-                        <h1 class="invoice-id">INVOICE {{ $item->id }}</h1>
+                        <h1 class="invoice-id">INVOICE {{ $item->no_invoice }}</h1>
                         
                         <div class="date">Date of Invoice: {{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}</div>
                         <div class="date">Due Date: {{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}</div>
