@@ -30,7 +30,7 @@
                 <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}</td>
-                    <td>{{ $item->created_at->format('d-m-Y') . date('d-m-Y', time() + (60 * 60 * 24 * 7)) }}</td>
+                    <td>{{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}</td>
                     <td>{{ $item->transaction_status}}</td>
                     <td><div class="myDIV">{{ $item->transaction_total }}</div></td>
                     <td>

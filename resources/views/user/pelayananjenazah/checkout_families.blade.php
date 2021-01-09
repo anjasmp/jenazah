@@ -192,27 +192,32 @@
                   </div>
                   @endif
 
-              <div class="join-container">
-                <a
-                  href="{{ route ('product.checkout-success', $item->id)}}"
-                  class="btn btn-block btn-join-now mt-3 py-2"
-                  >Saya Sudah Melakukan Pembayaran</a
-                >
-              </div>
-              <div class="text-center mt-3 mb-5">
-                <a href="{{ route('product.detail', $item->product->slug)}}" class="text-muted">Batal Daftar</a>
-              </div>
-             
-              {{-- <div class="join-container">
-                <a
-                  href="{{ route('product.detail', $item->product->slug)}}"
-                  class="btn btn-block btn-join-now mt-3 py-2"
-                  >Batal daftar</a
-                >
-              </div> --}}
-             
-              
-              
+                  @forelse ($item->user_detail->user_families as $items)
+
+                  @if ($loop->first)
+                  <div class="join-container">
+                    <a
+                      href="{{ route ('product.checkout-success', $item->id)}}"
+                      class="btn btn-block btn-join-now mt-3 py-2"
+                      >Saya Sudah Melakukan Pembayaran</a
+                    >
+                  </div>
+                  <div class="text-center mt-3 mb-5">
+                    <a href="{{ route('product.detail', $item->product->slug)}}" class="text-muted">Batal Daftar</a>
+                  </div>
+                  @endif
+
+        @empty
+        <div class="join-container">
+          <a
+            href="{{ route('product.detail', $item->product->slug)}}"
+            class="btn btn-block btn-join-now mt-3 py-2"
+            >Batal daftar</a
+          >
+        </div>
+        @endforelse
+
+
             </div>
           </div>
         </div>

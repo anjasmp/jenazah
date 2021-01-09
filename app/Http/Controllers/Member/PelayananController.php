@@ -21,11 +21,9 @@ class PelayananController extends Controller
 
     public function home()
     {
-        $item = Transaction::Where('users_id', Auth::id())
-            ->where(function ($query) {
-                $query->where('transaction_status', '=', 'SUCCESS');
-        })
-        ->get();
+        $item = Transaction::Where('users_id', Auth::id())->get();
+
+
 
         $anggota = UserFamilies::Where('user_details_id', Auth::id())
             ->where(function ($query) {

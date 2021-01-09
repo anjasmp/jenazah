@@ -23,7 +23,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      @forelse ($items as $key => $detail)
+                      @forelse ($item->user_detail->user_families as $key => $detail)
                       <tr>
                         <td class="align-middle">{{ $detail->name }}</td>
                         <td class="align-middle">{{ $detail->nik }}</td>
@@ -47,7 +47,7 @@
                 <table class="trip-informations">
                   <tr>
                     <th width="50%">Anggota</th>
-                    <td width="50%" class="text-right">{{ $items->count() }} person</td>
+                    <td width="50%" class="text-right">{{ $item->user_detail->user_families-> count() }}  person</td>
                   </tr>
                   <tr>
                     <th width="50%">Masa Aktif</th>

@@ -53,7 +53,7 @@ class CheckoutController extends Controller
             'transaction_status' => 'IN_CART'
         ]);
 
-        
+        // echo $transaction->id;
 
         // UserFamilies::create([
         //     'transactions_id' => $transaction->id,
@@ -117,11 +117,15 @@ class CheckoutController extends Controller
         $item = Transaction::with(['user','product','user_detail.user_families'])->findOrFail($id);
 
         
-        // return $item;
-        // $items = UserFamilies::Where('user_details_id', Auth::id())->get();
-        
+        $anggota = UserFamilies::Where('user_details_id', Auth::id())
+            ->where(function ($query) {
+                $query->where('userfamily_status', 'ACTIVE');
+        })->first();
+
+
         return view('user.pelayananjenazah.checkout_families',[
-            'item' => $item
+            'item' => $item,
+            'anggota' => $anggota
         ]);
 
 
@@ -129,8 +133,6 @@ class CheckoutController extends Controller
     
     public function createfamilies (Request $request, $id)
     {
-      
-
 
         $data = $request->all();
 

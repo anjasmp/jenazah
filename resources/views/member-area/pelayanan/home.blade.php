@@ -7,7 +7,20 @@
 <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
     <div class="card-body" style="box-shadow: 0 10px 29px 0 rgba(68, 88, 144, 0.1); padding-bottom: 70px;">
         <h3 style="text-align: center;">Halo, Selamat Datang! <span style="color: #03877e;">{{ Auth::user()->name }}</span> </h3>
+        
+
+        @forelse ($item as $items)
+        @if ($items->transaction_status == 'SUCCESS')
         <h1 style="text-align: center;"><span style="color: #03877e;"> <br>PERMINTAAN PELAYANAN JENAZAH</span> </h1>
+        @else
+        <h1 style="text-align: center;"><span style="color: #03877e;"> <br>STATUS ANGGOTA : NON ACTIVE </span> </h1>
+        @endif
+        @empty
+        <h1 style="text-align: center;"><span style="color: #03877e;"> <br>ANDA BELUM TERDAFTAR </span> </h1>
+        @endforelse
+        
+        
+        
         
     </div>
 
@@ -16,7 +29,7 @@
         <div class="card border-center">
 
         @forelse ($item as $items)
-        @if ($item->transaction_status === 'SUCCESS')
+        @if ($items->transaction_status == 'SUCCESS')
         <a href="{{ route ('pelayanan.create')}}" class="btn btn-danger">
             <div class="card-body">
                 <h2>KLIK DISINI !</h2>

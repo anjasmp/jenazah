@@ -30,16 +30,27 @@ class UserDetails extends Model
         return $this->hasMany(UserFamilies::class);
     }
 
+    // public function getAutoNumberOptions()
+    // {
+    //     return [
+    //         'no_anggota' => [
+    //         'format' => function () {
+    //             return date('Y') . 'P.?', substr($this->no_kk, 0, 6); // autonumber format. '?' will be replaced with the generated number.
+    //         },
+    //         'length' => 5 // The number of digits in the autonumber
+    //         ]
+    //     ];
+    // }
+
     public function getAutoNumberOptions()
     {
         return [
             'no_anggota' => [
-            'format' => function () {
-                return date('Y') . 'P' . substr($this->no_kk, 0, 6)  . '?'; // autonumber format. '?' will be replaced with the generated number.
-            },
-            'length' => 5 // The number of digits in the autonumber
+                'format' => date('Y') . 'P?', // autonumber format. '?' will be replaced with the generated number.
+                'length' => 5 // The number of digits in an autonumber
             ]
         ];
     }
+
 
 }

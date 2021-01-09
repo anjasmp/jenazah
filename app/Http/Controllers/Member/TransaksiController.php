@@ -41,15 +41,11 @@ class TransaksiController extends Controller
 
     public function pay(Request $request, $id)
     {
-        $item = Transaction::with(['user','product'])->findOrFail($id);
-
-        $items = UserFamilies::Where('user_details_id', Auth::id())->get();
-
-        // return $item;
+        $item = Transaction::with(['user','product','user_detail.user_families'])->findOrFail($id);
         
+      
         return view('member-area.pembayaran.transaksi.pay',[
-            'item' => $item,
-            'items' => $items
+            'item' => $item
         ]);
     }
 
