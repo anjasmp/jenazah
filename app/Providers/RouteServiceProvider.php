@@ -61,7 +61,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapAdminRoutes()
     {
-        Route::middleware('web', 'auth')
+        Route::middleware('web', 'auth', 'verified')
             ->prefix('admin')
             ->namespace($this->namespace)
             ->group(base_path('routes/admin.php'));
@@ -76,7 +76,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapMemberRoutes()
     {
-        Route::middleware('web', 'auth')
+        Route::middleware('web', 'auth', 'verified')
             ->prefix('member')
             ->namespace($this->namespace)
             ->group(base_path('routes/member.php'));

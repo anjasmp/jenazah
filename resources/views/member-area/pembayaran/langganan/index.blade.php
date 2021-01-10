@@ -29,7 +29,7 @@
             <tbody>
                 @forelse ($items as $key => $item)
                 <tr>
-                    <td>{{ ($item->product->title) }}</td>
+                    <td>{{ ($item->title) }}</td>
                     <td>{{ $item->user->name }}</td>
                     <td>{{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}</td>
                     <td>{{ Carbon\Carbon::parse($item->masa_aktif)->format('d-m-Y') }}</td>
@@ -62,7 +62,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="7" class="text-center">Data kosong</td>
+                    <td colspan="7" class="text-center">Kamu belum berlangganan</td>
 
                 </tr>
                 @endforelse

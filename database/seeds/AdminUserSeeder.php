@@ -14,8 +14,8 @@ class AdminUserSeeder extends Seeder
     public function run()
     {
        $user = User::create([
-            'name' => 'Admin Masjid',
-            'email' => 'admin@masjid.com',
+            'name' => 'Admin UPJ',
+            'email' => 'admin@upjmasjidbaitulhaq.xyz',
             'password' => bcrypt('12345678'),
             'email_verified_at' => now(),
         ]);

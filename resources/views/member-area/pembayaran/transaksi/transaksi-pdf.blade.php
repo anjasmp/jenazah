@@ -230,23 +230,23 @@
             
             <main>
 
-                @foreach ($items as $item)
+                
                     <div class="row contacts">
                     <div class="col invoice-to">
                         <div class="text-gray-light">INVOICE TO:</div>
-                        <h2 class="to">{{ $item->user->name }}</h2>
-                        {{-- <div class="address">{{ $item->user_detail->alamat }}</div> --}}
-                        <div class="email">{{ $item->user->email }}</div>
+                        <h2 class="to">{{ $items->user->name }}</h2>
+                        <div class="address">{{ $items->user_detail->alamat }}</div>
+                        <div class="email">{{ $items->user->email }}</div>
                     </div>
                     <div class="col invoice-details">
-                        <h1 class="invoice-id">INVOICE {{ $item->no_invoice }}</h1>
+                        <h1 class="invoice-id">{{ $items->no_invoice }}</h1>
                         
-                        <div class="date">Date of Invoice: {{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}</div>
-                        <div class="date">Due Date: {{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}</div>
-                        <div class="invoice-id">STATUS: {{ $item->transaction_status }} </div>
+                        <div class="date">Date of Invoice: {{ Carbon\Carbon::parse($items->created_at)->format('d-m-Y') }}</div>
+                        <div class="date">Due Date: {{ Carbon\Carbon::parse($items->created_at)->format('d-m-Y') }}</div>
+                        <div class="invoice-id">STATUS: {{ $items->transaction_status }} </div>
                     </div>
                 </div>
-                @endforeach
+  
                 
                 <table border="0" cellspacing="0" cellpadding="0">
                     <thead>
@@ -261,38 +261,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @forelse ($items as $key => $item)
                         <tr>
-                            <td class="no">{{ $item->product->id }}</td></td>
-                            <td class="text-left">{{ $item->product->title }}</td>
-                            <td class="text-left">{{ $item->product->type }}</td>
-                            <td class="text-left">{{ Carbon\Carbon::parse($item->masa_aktif)->format('d-m-Y') }}</td>
-                            <td class="unit"><span style="cellspacing="0" cellpadding="0"">Rp. </span>{{ $item->product->register }}</td>
-                            <td class="unit"><span style="cellspacing="0" cellpadding="0"">Rp. </span>{{ $item->product->price }}</td>
-                            <td class="total"><span style="cellspacing="0" cellpadding="0"">Rp. </span>{{ $item->transaction_total }}</td>
+                            <td class="no">{{ $items->product->id }}</td></td>
+                            <td class="text-left">{{ $items->product->title }}</td>
+                            <td class="text-left">{{ $items->product->type }}</td>
+                            <td class="text-left">{{ Carbon\Carbon::parse($items->masa_aktif)->format('d-m-Y') }}</td>
+                            <td class="unit"><span style="cellspacing="0" cellpadding="0"">Rp. </span>{{ $items->product->register }}</td>
+                            <td class="unit"><span style="cellspacing="0" cellpadding="0"">Rp. </span>{{ $items->product->price }}</td>
+                            <td class="total"><span style="cellspacing="0" cellpadding="0"">Rp. </span>{{ $items->transaction_total }}</td>
                         </tr>
-                        @empty
-                        <tr>
-                            <td colspan="7" class="text-center">Data kosong</td>
-
-                        </tr>
-                @endforelse
                     </tbody>
                     <tfoot>
-                    @foreach ($items as $item)
                         
                         <tr>
                             <td colspan="3"></td>
                             <td colspan="3">SUBTOTAL</td>
-                            <td><span style="cellspacing="0" cellpadding="0"">Rp. </span>{{ $item->transaction_total }}</td>
+                            <td><span style="cellspacing="0" cellpadding="0"">Rp. </span>{{ $items->transaction_total }}</td>
                         </tr>
                         
                         <tr>
                             <td colspan="3"></td>
                             <td colspan="3">GRAND TOTAL</td>
-                            <td><span style="cellspacing="0" cellpadding="0"">Rp. </span>{{ $item->transaction_total }}</td>
+                            <td><span style="cellspacing="0" cellpadding="0"">Rp. </span>{{ $items->transaction_total }}</td>
                         </tr>
-                         @endforeach
                     </tfoot>
                 </table>
                 <div class="thanks">Thank you!</div>

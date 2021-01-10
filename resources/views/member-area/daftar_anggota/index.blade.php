@@ -11,7 +11,13 @@
             {{ Session('success')}}
         </div>
         @endif
+
+        @if ($items == null)
+            
+        @else
         <a href="{{ route ('anggota.create')}}" class="btn btn-primary" style="float: right;"><i class="fas fa-plus fa-sm text-white-50"></i> Create Anggota</a>
+        @endif
+        
         <div class="table-responsive">
         <table class="table table-striped" id="tableAnggota">
             <thead>
@@ -26,32 +32,33 @@
             </thead>
 
             <tbody>
-                @foreach ($items as $key => $result)
-                <tr>
-                    <td>{{ $key + 1 }}</td>
-                    <td>{{ $result->name }}</td>
-                    <td>{{ $result->nik }}</td>
-                    <td>{{ $result->tempat_lahir }}, {{ Carbon\Carbon::parse($result->tanggal_lahir)->format('d-m-Y') }}</td>
-                    @if ($result->userfamily_status == 'ACTIVE')
-                    <td><span class="badge badge-pill badge-primary" >{{ ($result->userfamily_status) }}</span></td>
-                    @else @if ($result->userfamily_status == 'NON ACTIVE')
-                    <td><span class="badge badge-pill badge-danger" >{{ ($result->userfamily_status) }}</span></td>
-                    @else
-                    <td><span class="badge badge-pill badge-warning" >{{ ($result->userfamily_status) }}</span></td>
-                    @endif
-                    @endif
-                    <td>
+               @foreach ($items as $key => $result)
+               <tr>
+                <td>{{ $key + 1 }}</td>
+                <td>{{ $result->name }}</td>
+                <td>{{ $result->nik }}</td>
+                <td>{{ $result->tempat_lahir }}, {{ Carbon\Carbon::parse($result->tanggal_lahir)->format('d-m-Y') }}</td>
+                @if ($result->userfamily_status == 'ACTIVE')
+                <td><span class="badge badge-pill badge-primary" >{{ ($result->userfamily_status) }}</span></td>
+                @else @if ($result->userfamily_status == 'NON ACTIVE')
+                <td><span class="badge badge-pill badge-danger" >{{ ($result->userfamily_status) }}</span></td>
+                @else
+                <td><span class="badge badge-pill badge-warning" >{{ ($result->userfamily_status) }}</span></td>
+                @endif
+                @endif
+                <td>
 
-                        <form action="{{ route('anggota.destroy', $result->id)}}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <a href="{{ route('anggota.edit', $result->id)}}" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a>
-                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                        </form>
-                    </td>
+                    <form action="{{ route('anggota.destroy', $result->id)}}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <a href="{{ route('anggota.edit', $result->id)}}" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a>
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                    </form>
+                </td>
 
                 </tr>
-                @endforeach
+               @endforeach
+             
             </tbody>
         </table>
         </div>

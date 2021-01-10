@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
+use App\Service;
 use App\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,14 +17,27 @@ class LanggananController extends Controller
      */
     public function index()
     {
-        $items = Transaction::with([
-            'user','product','user_detail.user_families','services'
-        ])->Where('users_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
         
         
+        $transaction = Transaction::where([
+            'users_id' => Auth::id(),
+            'transaction_status' => 'SUCCESS'
+        ])->first();
+
+        if ($transaction == null) {
+            $items = array();
+        } 
+        else {
+            $items = Transaction::with(['product','user_detail','user'])->Where('users_id', Auth::id())->get();
+
+        }
+
+        // return $items;
       
 
-        return view ('member-area.pembayaran.langganan.index', compact('items'));
+        return view ('member-area.pembayaran.langganan.index',[
+            'items' => $items
+        ]);
     }
 
     /**

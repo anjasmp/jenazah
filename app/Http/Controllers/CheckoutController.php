@@ -74,7 +74,10 @@ class CheckoutController extends Controller
             'pekerjaan' => 'string|max:30',
             'no_kk' => 'required|string|unique:user_details,no_kk',
             'scan_ktp' => 'required|image',
-            'scan_kk' => 'required|image'
+            'scan_kk' => 'required|image',
+            'tempat_lahir' => 'required|string|max:255',
+            'tanggal_lahir' => 'required|date',
+            'nik' => 'required|string|max:255|unique:user_families,nik'
 
         ]);
 
@@ -101,6 +104,16 @@ class CheckoutController extends Controller
 
         ]);
 
+        UserFamilies::create([
+            'user_details_id' => $user_details->id,
+            'name' => Auth::user()->name,
+            'tempat_lahir' => $data['tempat_lahir'],
+            'tanggal_lahir' => $data['tanggal_lahir'],
+            'nik' => $data['nik'],
+            'userfamily_status' => 'PENDING'
+
+        ]);
+
         echo $user_details->no_anggota;
 
 
@@ -113,15 +126,20 @@ class CheckoutController extends Controller
         $item = Transaction::with(['user','product','user_detail.user_families'])->findOrFail($id);
 
         
-        $anggota = UserFamilies::Where('user_details_id', Auth::id())
-            ->where(function ($query) {
-                $query->where('userfamily_status', 'ACTIVE');
-        })->first();
+        // $anggota = UserFamilies::Where('user_details_id', Auth::id())
+        //     ->where(function ($query) {
+        //         $query->where('userfamily_status', 'ACTIVE');
+        // })->first();
+        if ($item->transaction_status == 'CANCEL') {
+            abort('404');
+        }
 
+     
+// return $item;
 
         return view('user.pelayananjenazah.checkout_families',[
             'item' => $item,
-            'anggota' => $anggota
+            // 'anggota' => $anggota
         ]);
 
 
@@ -172,6 +190,29 @@ class CheckoutController extends Controller
 
         return redirect()->back()->with('success','Data berhasil dihapus');
     }
+
+    public function cancel ($id)
+    {
+        $item = Transaction::findorfail($id);
+        $item->update(['transaction_status' => 'CANCEL']);
+        $user_details = UserDetails::where('transactions_id', $id)->first();
+
+        if ($user_details !== null ){
+            if ($user_details->user_families !== null) {
+
+                $user_details->user_families()->delete();
+
+                
+            }
+
+            $user_details->delete();
+        
+        }
+
+
+        return redirect(route('homepage'))->with('success','berhasil dicancel');
+    }
+
 
 
 

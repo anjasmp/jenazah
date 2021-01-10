@@ -40,12 +40,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function transaction()
     {
-        return $this->morphMany(Transaction::class, 'users_id', 'id');
+        return $this->hasMany(Transaction::class, 'users_id', 'id');
     }
 
     public function user_detail()
     {
-        return $this->morphMany(UserDetails::class, 'users_id', 'id');
+        return $this->hasOne(UserDetails::class, 'users_id', 'id');
     }
 
 }

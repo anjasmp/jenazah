@@ -86,27 +86,27 @@
             
                             <li class="list-divider"></li>
                             <li class="nav-small-cap"><span class="hide-menu">Jumbotron</span></li>
-                            {{-- <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                            <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                     aria-expanded="false"><i class="fa fa-bullhorn" aria-hidden="true"></i><span
                                         class="hide-menu">Announcement</span></a>
                                 <ul aria-expanded="false" class="collapse  first-level base-level-line">
 
-                                    @if (auth()->user()->can('create announcement'))
+                                    {{-- @if (auth()->user()->can('create announcement')) --}}
                                     <li class="sidebar-item"><a href="{{ route('announcement.create')}}" class="sidebar-link"><span
                                                 class="hide-menu"> Create</span></a>
                                     </li>
-                                    @endif
+                                    {{-- @endif --}}
 
-                                    @if (auth()->user()->can('index announcement') || auth()->user()->can('edit announcement') || auth()->user()->can('delete announcement') )
+                                    {{-- @if (auth()->user()->can('index announcement') || auth()->user()->can('edit announcement') || auth()->user()->can('delete announcement') ) --}}
                                     <li class="sidebar-item"><a href="{{ route('announcement.index')}}" class="sidebar-link"><span
                                                 class="hide-menu"> List</span></a>
                                     </li>
                                     <li class="sidebar-item"><a href="{{ route('announcement.show-deletes')}}" class="sidebar-link"><span
                                         class="hide-menu"> Recycle Bin</span></a>
                                     </li>
-                                    @endif
+                                    {{-- @endif --}}
                                 </ul>
-                            </li> --}}
+                            </li>
 
                             <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                 aria-expanded="false"><i class="fa fa-th-large" aria-hidden="true"></i><span

@@ -4,11 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Alfa6661\AutoNumber\AutoNumberTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class Transaction extends Model
 {
-    use AutoNumberTrait;
+    use AutoNumberTrait, SoftDeletes;
 
     protected $guarded = [];
 

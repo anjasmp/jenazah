@@ -28,14 +28,7 @@ class TransaksiController extends Controller
 
     public function cetak_pdf()
     {
-        $items = Transaction::with([
-            'user','product','user_detail','services'
-        ])->Where('users_id', Auth::user()->id)->get();
-         set_time_limit (300);
         
-        $pdf = PDF::loadView('member-area.pembayaran.transaksi.transaksi-pdf', ['items'=>$items]);
- $pdf->save(storage_path().'_transaction.pdf');
-        return $pdf->stream();
     }
 
 
@@ -78,7 +71,16 @@ class TransaksiController extends Controller
      */
     public function show($id)
     {
-        //
+        $items = Transaction::with([
+            'user','product','user_detail'
+        ])->Where('users_id', Auth::user()->id)->findorfail($id);
+
+        // return $items;
+         set_time_limit (300);
+        
+        $pdf = PDF::loadView('member-area.pembayaran.transaksi.transaksi-pdf', ['items'=>$items]);
+        $pdf->save(storage_path().'_transaction.pdf');
+        return $pdf->stream();
     }
 
     /**

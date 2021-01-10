@@ -43,6 +43,30 @@
                 <form action="{{ route('product.checkout-create', $item->id)}}" method="post" id="authForm" enctype="multipart/form-data">
                   @csrf
 
+                  <p style="margin-bottom: -1px">Tempat Lahir</p>
+                  <input
+                  name="tempat_lahir"
+                    type="text"
+                    class="form-control mb-2 mr-sm-2"
+                    id="inputTempatLahir"
+                  />
+
+                  <p style="margin-bottom: -1px">Tanggal Lahir</p>
+                  <input
+                  name="tanggal_lahir"
+                    type="date"
+                    class="form-control mb-2 mr-sm-2"
+                    id="inputTanggalLahir"
+                  />
+
+                  <p style="margin-bottom: -1px">Nomor Induk Kependudukan</p>
+                  <input
+                  name="nik"
+                    type="number"
+                    class="form-control mb-2 mr-sm-2"
+                    id="inputNik"
+                  />
+
                   <p style="margin-bottom: -1px">Alamat</p>
                   <textarea 
                   name="alamat"
@@ -97,14 +121,17 @@
                 </form>
                 
           </div>
-          <div class="text-left mt-3 mb-3">
-            <a href="#" class="text-muted">Baca Syarat & ketentuan</a>
-          </div>
+          {{-- <div class="text-left mt-3 mb-3">
+            <a href="#" class="text-muted">Syarat & ketentuan berlaku</a>
+          </div> --}}
           <div class="join-container">
             <button class="btn btn-block btn-join-now mt-3 py-2" type="submit" form="authForm">Daftar Sekarang</button>
           </div>
           <div class="text-center mt-3">
-            <a href="{{ route('product.detail', $item->product->slug)}}" class="text-muted">Cancel Daftar</a>
+            <form action="{{ route('product.checkout-cancel', $item->id)}}" method="POST">
+              @csrf @method('POST')
+            <button class="btn btn-block btn-join-now mt-3 py-2" style="color: #b1b1b1 !important; background: none !important; border: none !important; "  type="submit">Batal Daftar</button>
+            </form>
           </div>
           </div>
           

@@ -399,6 +399,7 @@ h6 {
     color: #fff;
 }
 
+
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
@@ -939,8 +940,44 @@ section {
 }
 
 @media (max-width: 767px) {
-    .section-header p {
+    .section-header h3 {
         width: 100%;
+    }
+}
+
+
+/* Sections Header pricing/product
+--------------------------------*/
+
+#pricing .section-header h3 {
+    font-size: 36px;
+    color: #008d88;
+    font-family: Poppins;
+    text-align: center;
+    font-weight: 500;
+    position: relative;
+}
+
+#pricing .section-header p {
+    text-align: center;
+    margin: auto;
+    font-size: 15px;
+    padding-bottom: 60px;
+    color: #556877;
+    width: 50%;
+}
+
+@media (max-width: 767px) {
+    #pricing .section-header h3 {
+        width: 100%;
+        margin-top: 100px;
+    }
+}
+
+@media (max-width: 992px) {
+    #pricing .section-header h3 {
+        width: 100%;
+        margin-top: 200px;
     }
 }
 
@@ -1313,6 +1350,7 @@ section {
     overflow: hidden;
     margin: 20px;
     box-shadow: 0 10px 10px 0 rgba(68, 88, 144, 0.1);
+    margin-top: -30px;
 }
 
 .pricing .box h3 {

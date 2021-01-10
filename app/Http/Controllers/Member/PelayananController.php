@@ -21,8 +21,11 @@ class PelayananController extends Controller
 
     public function home()
     {
+        // $item = Transaction::Where('users_id', Auth::id())->get();
+
         $item = Transaction::Where('users_id', Auth::id())->get();
 
+        // return $item;
 
 
         $anggota = UserFamilies::Where('user_details_id', Auth::id())
@@ -49,8 +52,31 @@ class PelayananController extends Controller
     public function index()
     {
         
+        $transaction = Transaction::where([
+            'users_id' => Auth::id(),
+            'transaction_status' => 'SUCCESS'
+        ])->first();
 
-        $item = Service::with(['transactions','user_families'])->Where('transactions_id', Auth::user()->id)->get();
+        if ($transaction == null) {
+            $item = array();
+        } else {
+            $item = Service::with(['transactions','user_families'])->Where('transactions_id', $transaction->id)->get();
+
+        }
+
+
+
+        // return $transaction;
+      
+            
+            // return $item;
+
+        return view('member-area.pelayanan.index', compact('item'));
+    }
+    
+    public function service($transaction_id)
+    {
+        $item = Service::with(['transactions','user_families'])->where('transactions_id', $transaction_id)->get();
 
         return view('member-area.pelayanan.index', compact('item'));
     }
@@ -62,11 +88,13 @@ class PelayananController extends Controller
      */
     public function create()
     {
-        $user_families = UserFamilies::Where('user_details_id', Auth::id())
+        $user_families = UserFamilies::Where('user_details_id', Auth::user()->user_detail->id)
                 ->where(function ($query) {
                     $query->where('userfamily_status', '=', 'ACTIVE');
             })
             ->get();
+
+            // return $user_families;
 
         
 

@@ -10,9 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use FontLib\Table\Type\name;
+
 Auth::routes(['verify' => true]);
 
-Route::get('/', 'HomepageController@index');
+Route::get('/', 'HomepageController@index')->name('homepage');
 
 // Route::get('/product', 'DonationController@create')->name('product.create');
 // Route::get('/product/list', 'DonationController@index')->name('product.list');
@@ -57,6 +60,9 @@ Route::get('/productcheckoutfamilies/{id}', 'CheckoutController@indexfamilies')
 Route::post('/productcheckout/createfamilies/{detail_id}', 'CheckoutController@createfamilies')
 ->name('product.checkout-createfamilies');
 
+Route::post('/productcheckout/createfamilies/cancel/{id}', 'CheckoutController@cancel')
+->name('product.checkout-cancel');
+
 
 
 
@@ -77,7 +83,7 @@ Route::get('/qurban', 'QurbanController@index')
 
 
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+// Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
 
 Route::get('/profil/sejarah', 'ProfilController@sejarah')

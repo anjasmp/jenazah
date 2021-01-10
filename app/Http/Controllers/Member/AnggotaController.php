@@ -18,11 +18,22 @@ class AnggotaController extends Controller
      */
     public function index()
     {
-        $items = UserFamilies::Where('user_details_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
+        $transaction = Transaction::where([
+            'users_id' => Auth::id(),
+            'transaction_status' => 'SUCCESS'
+        ])->first();
 
+        if ($transaction == null) {
+            $items = array();
+        } else {
+            $items = UserFamilies::Where('user_details_id', Auth::user()->user_detail->id)->get();
 
+        }
+
+        
         return view ('member-area.daftar_anggota.index', compact('items'));
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -96,8 +107,11 @@ class AnggotaController extends Controller
      */
     public function edit($id)
     {
-        $items = UserFamilies::Where('user_details_id', Auth::user()->id)->findorfail($id);
+        $items = UserFamilies::Where('user_details_id', Auth::user()->user_detail->id)->findorfail($id);
 
+        // $items = Transaction::Where('users_id',Auth::user()->id)->with(['user','product','user_detail.user_families'])->findorfail($id);
+
+        
         return view('member-area.daftar_anggota.edit',[
             'items' => $items
         ]);

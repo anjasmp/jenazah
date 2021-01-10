@@ -20,7 +20,7 @@
                   @endif
                 <h2>Data Kartu Keluarga</h2>
                 <p>
-                  Isi sesuai yang ada di kartu keluarga (termasuk pendaftar)
+                  Isi sesuai yang ada di kartu keluarga
                 </p>
                 <div class="attendee">
                   <table class="table table-responsive-sm text-center">
@@ -40,11 +40,15 @@
                         <td class="align-middle">{{ $detail->nik }}</td>
                         <td class="align-middle">{{ $detail->tempat_lahir }}</td>
                         <td class="align-middle">{{ Carbon\Carbon::parse($detail->tanggal_lahir)->format('d-m-Y') }}</td>
+
+                        @if ($key >0)
                         <td class="align-middle">
                           <a href="{{ route('product.checkout-removefamilies', $detail->id)}}">
                             <img src="{{ asset('user/assets/img/ic_remove.png')}}" alt="" />
                           </a>
                         </td>
+                        @endif
+                        
                       </tr>
                       @empty
                           <td colspan="6" class="text-center">
@@ -75,7 +79,7 @@
                       class="form-control mb-2 mr-sm-2"
                       id="name"
                       required
-                      placeholder="Name"
+                      placeholder="Nama (sesuai KK)"
                     />
 
                     <label class="sr-only" for="nik"
@@ -126,8 +130,7 @@
                   </form>
                   <h3 class="mt-2 mb-0">Note</h3>
                   <p class="disclaimer mb-0">
-                    You are only able to invite member that has registered in
-                    Nomads.
+                    Isi dengan benar data diatas mengikuti yang ada di dalam kartu keluarga
                   </p>
                 </div>
               </div>
@@ -138,7 +141,7 @@
                 <table class="trip-informations">
                   <tr>
                     <th width="50%">Anggota</th>
-                    <td width="50%" class="text-right">{{ $item->user_detail->user_families-> count() }} person</td>
+                    <td width="50%" class="text-right">{{ $item->user_detail->user_families->count() }} person</td>
                   </tr>
                   <tr>
                     <th width="50%">Masa Aktif</th>
@@ -192,9 +195,9 @@
                   </div>
                   @endif
 
-                  @forelse ($item->user_detail->user_families as $items)
+              
 
-                  @if ($loop->first)
+                  @if (count($item->user_detail->user_families) > 1)
                   <div class="join-container">
                     <a
                       href="{{ route ('product.checkout-success', $item->id)}}"
@@ -203,19 +206,20 @@
                     >
                   </div>
                   <div class="text-center mt-3 mb-5">
-                    <a href="{{ route('product.detail', $item->product->slug)}}" class="text-muted">Batal Daftar</a>
+                    <form action="{{ route('product.checkout-cancel', $item->id)}}" method="POST">
+                      @csrf @method('POST')
+                    <button class="btn btn-block btn-join-now mt-3 py-2" style="color: #b1b1b1 !important; background: none !important; border: none !important; " type="submit">Batal Daftar</button>
+                    </form>
+                  </div>
+                  @else
+                  <div class="join-container">
+                    <form action="{{ route('product.checkout-cancel', $item->id)}}" method="POST">
+                      @csrf @method('POST')
+                    <button class="btn btn-block btn-join-now mt-3 py-2" type="submit">Batal Daftar</button>
+                    </form>
                   </div>
                   @endif
 
-        @empty
-        <div class="join-container">
-          <a
-            href="{{ route('product.detail', $item->product->slug)}}"
-            class="btn btn-block btn-join-now mt-3 py-2"
-            >Batal daftar</a
-          >
-        </div>
-        @endforelse
 
 
             </div>

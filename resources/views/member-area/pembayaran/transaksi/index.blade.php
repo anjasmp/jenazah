@@ -36,7 +36,7 @@
                     <td>
                         
 
-                        <a href="{{ URL::to('/member/transaksi/cetak_pdf') }}" class="btn btn-dark" target="_blank">
+                        <a href="{{ route('transaksi.show', $item->id) }}" class="btn btn-dark" target="_blank">
                         <i class="fa fa-download" aria-hidden="true"></i>
                         </a>
 
