@@ -18,9 +18,7 @@
               <h4>Useful Links</h4>
               <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="{{ route('qurban.index') }}">Laporan Qurban</a></li>
-                <li><a href="{{ route('lazhaq.index') }}">Laporan Zakat Infaq Shodaqoh</a></li>
-                <li><a href="https://wa.me/message/EMV4ZHEQ3PB7M1">Donation Confirmation</a></li>
+                <li><a href="https://wa.me/message/EMV4ZHEQ3PB7M1">Konfirmasi Pembayaran</a></li>
               </ul>
             </div>
 

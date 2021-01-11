@@ -38,8 +38,19 @@ class CheckoutController extends Controller
         // $user_families = UserFamilies::findOrFail($id);
         // $transactiondetail = TransactionDetail::all();
 
+        $transaction = Transaction::where([
+            'users_id' => Auth::id(),
+            'products_id' => $id,
+            'transaction_status' => 'IN_CART'
+        ])->has('user_detail')->first();
         
-        
+        // return $transaction;
+
+        if ($transaction->exists()) {
+            return redirect()->route('product.checkoutfamilies', $transaction->id);
+        } 
+
+
 
         $transaction = Transaction::create([
             'products_id' => $id,
@@ -51,7 +62,6 @@ class CheckoutController extends Controller
         ]);
 
         echo $transaction->no_invoice;
-
 
         return redirect()->route('product.checkout', $transaction->id);
 

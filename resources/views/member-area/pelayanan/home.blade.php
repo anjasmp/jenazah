@@ -4,62 +4,57 @@
 @section('content')
 
 
+
 <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
     <div class="card-body" style="box-shadow: 0 10px 29px 0 rgba(68, 88, 144, 0.1); padding-bottom: 70px;">
         <h3 style="text-align: center;">Halo, Selamat Datang! <span style="color: #03877e;">{{ Auth::user()->name }}</span> </h3>
-        
+        <br>
 
-        @foreach ($item as $items)
-        @if ($items->transaction_status == 'SUCCESS')
-        
-        @if ($loop->first)
+        @if ($masa_aktif <= 7  && $masa_aktif !== null)
+
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Waktunya perpanjang!</h4>
+            <p>Masa aktif kamu akan segera berakhir, lakukan perpanjang pembayaran sekarang!</p>
+            <hr>
+            <a href="http://" class="btn btn-primary" >Perpanjang Sekarang!</a>
+        </div>
+        @endif
+
+
+        @if ($end_transaction !== null)
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Yuk, Lakukan pembayaran!</h4>
+            <p>Masa aktif sudah berakhir, aktifkan keanggotaan untuk tetap mendapatkan pelayanan!</p>
+            <hr>
+            <a href="http://" class="btn btn-danger" >Aktifkan Sekarang!</a>
+        </div>
+
+        @endif
+
+
+        @if ($item)
         <h1 style="text-align: center;"><span style="color: #03877e;"> <br>PERMINTAAN PELAYANAN JENAZAH</span> </h1>
-        @endif
-
-
-        @else
-       @if ($items->transaction_status == 'PENDING')
-
-        @if ($loop->first)
+        @else @if ($item)
         <h1 style="text-align: center;"><span style="color: #03877e;"> <br>STATUS ANGGOTA : NON ACTIVE </span> </h1>
-        @endif
-
-         @else 
-
-        @if ($loop->first)
+        @else
         <h1 style="text-align: center;"><span style="color: #03877e;"> <br>ANDA BELUM TERDAFTAR </span> </h1>
         @endif
-
         @endif
 
-         @endif
-        @endforeach
-        
-        
-        
-        
+
     </div>
 
 
     <div class="card-group">
         <div class="card border-center">
 
-            @foreach ($item as $items)
-            @if ($items->transaction_status == 'SUCCESS')
-            
-            @if ($loop->first)
+            @if ($item)
             <a href="{{ route ('pelayanan.create')}}" class="btn btn-danger">
                 <div class="card-body">
                     <h2>KLIK DISINI !</h2>
                 </div>
                 </a>
-            @endif
-    
-    
-            @else
-           @if ($items->transaction_status == 'PENDING')
-    
-            @if ($loop->first)
+            @else @if ($item)
             <div class="card-group">
                 <div class="card border-center">
                     <a href="{{ route ('transaksi.index')}}" class="btn btn-danger">
@@ -69,11 +64,7 @@
                     </a>
                 </div>
             </div>
-            @endif
-    
-             @else 
-    
-            @if ($loop->first)
+            @else
             <div class="card-group">
                 <div class="card border-center">
                     <a href="{{ route ('product.list')}}" class="btn btn-danger">
@@ -84,11 +75,7 @@
                 </div>
             </div>
             @endif
-    
             @endif
-    
-             @endif
-            @endforeach
 
         </div>
         </div>

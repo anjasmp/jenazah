@@ -8,6 +8,7 @@ use App\Service;
 use App\Transaction;
 use App\UserDetails;
 use App\UserFamilies;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,9 +22,79 @@ class PelayananController extends Controller
 
     public function home()
     {
-        // $item = Transaction::Where('users_id', Auth::id())->get();
+        $transaction = Transaction::where([
+            'users_id' => Auth::id(),
+            'transaction_status' => 'SUCCESS',
+        ])->first();
+        
+        // return $transaction;
+        $end_transaction = null;
+        
+        $masa_aktif = null;
 
-        $item = Transaction::Where('users_id', Auth::id())->get();
+        if ($transaction !== null) {
+            $end = Carbon::parse($transaction->masa_aktif);
+
+        
+            $now = Carbon::now();
+    
+            $masa_aktif = $now->diffInDays($end, false);
+
+            // return $masa_aktif;
+
+           if ($masa_aktif < 0) {
+            $transaction->update(['transaction_status' => 'ENDED SUBSCRIPTION']);
+           }
+    
+        } else {
+            $end_transaction = Transaction::where([
+                'users_id' => Auth::id(),
+                'transaction_status' => 'ENDED SUBSCRIPTION',
+            ])->first();
+
+            // return $end_transaction;
+
+        } 
+        
+
+
+
+
+
+
+
+
+
+
+        $user_detail = UserDetails::where([
+            'users_id' => Auth::id(),
+        ])->first();
+
+
+
+        if ($user_detail == null) {
+
+            $item = array();
+
+        } else {
+
+            $item = Transaction::where([
+                'transaction_status' => 'PENDING',
+            ])->first();
+
+
+            if ($item == null) {
+
+                $item = array();
+
+            } else {
+
+                $item = Transaction::where([
+                    'users_id' => Auth::id(),
+                ])->first();
+            }
+            
+        }
 
         // return $item;
 
@@ -39,12 +110,14 @@ class PelayananController extends Controller
         })->count();
 
        
-
+        // return $masa_aktif;
 
         return view('member-area.pelayanan.home',[
             'item' => $item,
             'anggota' => $anggota,
-            'service' => $service
+            'service' => $service,
+            'masa_aktif' => $masa_aktif,
+            'end_transaction' => $end_transaction
         ]);
     }
 

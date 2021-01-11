@@ -9,6 +9,7 @@ use App\Transaction;
 use App\User;
 use App\UserDetails;
 use App\UserFamilies;
+use Carbon\Carbon;
 use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -139,6 +140,8 @@ class TransactionController extends Controller
         } else {
             $item->user->syncRoles('user');
         }
+
+        $data = ['masa_aktif' => Carbon::now()->addYear(1)];
 
 
        

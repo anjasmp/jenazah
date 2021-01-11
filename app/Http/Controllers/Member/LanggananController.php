@@ -22,16 +22,15 @@ class LanggananController extends Controller
         $transaction = Transaction::where([
             'users_id' => Auth::id(),
             'transaction_status' => 'SUCCESS'
-        ])->first();
+        ])->with(['product','user'])->first();
 
         if ($transaction == null) {
             $items = array();
         } 
         else {
             $items = Transaction::where([
-                'users_id' => Auth::id(),
-                'transaction_status' => 'SUCCESS'
-            ])->first();
+                'users_id' => Auth::id()
+            ])->with(['product','user'])->first();
 
         }
 

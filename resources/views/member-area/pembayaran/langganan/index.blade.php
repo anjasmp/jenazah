@@ -28,6 +28,7 @@
 
             <tbody>
              
+                @if ($items)
                 <tr>
                     <td>{{ ($items->product->title) }}</td>
                     <td>{{ $items->user->name }}</td>
@@ -40,9 +41,15 @@
                     @else
                     <td>NON ACTIVE</td>
                     @endif
-                    
 
                 </tr>
+                @else
+                <tr>
+                    <td colspan="7" class="text-center">Kamu belum berlangganan</td>
+            
+                </tr>
+                @endif
+               
             </tbody>
         </table>
         </div>
