@@ -27,45 +27,22 @@
             </thead>
 
             <tbody>
-                @forelse ($items as $key => $item)
+             
                 <tr>
-                    <td>{{ ($item->title) }}</td>
-                    <td>{{ $item->user->name }}</td>
-                    <td>{{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}</td>
-                    <td>{{ Carbon\Carbon::parse($item->masa_aktif)->format('d-m-Y') }}</td>
-                    <td><div class="myDIV">{{ $item->transaction_total }}</div></td>
+                    <td>{{ ($items->product->title) }}</td>
+                    <td>{{ $items->user->name }}</td>
+                    <td>{{ Carbon\Carbon::parse($items->created_at)->format('d-m-Y') }}</td>
+                    <td>{{ Carbon\Carbon::parse($items->masa_aktif)->format('d-m-Y') }}</td>
+                    <td><div class="myDIV">{{ $items->transaction_total }}</div></td>
 
-                    @if ($item->transaction_status == 'SUCCESS')
+                    @if ($items->transaction_status == 'SUCCESS')
                     <td>ACTIVE</td>
                     @else
                     <td>NON ACTIVE</td>
                     @endif
                     
-                    <td>
-                        {{-- <a href="{{ route('transaction.show', $item->id) }}" class="btn btn-primary">
-                            <i class="fa fa-eye"></i>
-                            </a> --}}
-
-                        {{-- <a href="#" class="btn btn-danger">
-                        <i class="fa fa-pencil-alt"> Batal Langganan</i>
-                        </a> --}}
-
-                        {{-- <form action="{{ route('transaction.destroy', $item->id) }}" method="POST" class="d-inline">
-                        @csrf
-                        @method('delete')
-                        <button class="btn btn-danger">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                        </form> --}}
-                    </td>
 
                 </tr>
-                @empty
-                <tr>
-                    <td colspan="7" class="text-center">Kamu belum berlangganan</td>
-
-                </tr>
-                @endforelse
             </tbody>
         </table>
         </div>

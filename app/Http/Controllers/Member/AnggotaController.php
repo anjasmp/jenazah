@@ -20,7 +20,6 @@ class AnggotaController extends Controller
     {
         $transaction = Transaction::where([
             'users_id' => Auth::id(),
-            'transaction_status' => 'SUCCESS'
         ])->first();
 
         if ($transaction == null) {

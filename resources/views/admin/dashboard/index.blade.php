@@ -31,6 +31,21 @@
                 <div class="d-flex d-lg-flex d-md-block align-items-center">
                     <div>
                         <div class="d-inline-flex align-items-center">
+                            <h2 class="text-dark mb-1 font-weight-medium">{{ $pengaduan_musibah }}</h2>
+                        </div>
+                        <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Daftar Pengaduan</h6>
+                    </div>
+                    <div class="ml-auto mt-md-3 mt-lg-0">
+                        <span><i class="fa fa-th-large" aria-hidden="true"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card border-right">
+            <div class="card-body">
+                <div class="d-flex d-lg-flex d-md-block align-items-center">
+                    <div>
+                        <div class="d-inline-flex align-items-center">
                             <h2 class="text-dark mb-1 font-weight-medium">{{ $service }}</h2>
                         </div>
                         <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Meninggal Dunia</h6>
@@ -41,6 +56,10 @@
                 </div>
             </div>
         </div>
+
+    </div>
+
+    <div class="card-group">
         <div class="card border-right">
             <div class="card-body">
                 <div class="d-flex d-lg-flex d-md-block align-items-center">
@@ -84,7 +103,13 @@
             </div>
         </div>
     </div>
+    
 </div>
+
+
+
+    
+
 
 
 @endsection

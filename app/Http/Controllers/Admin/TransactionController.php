@@ -11,6 +11,7 @@ use App\UserDetails;
 use App\UserFamilies;
 use PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 
@@ -80,9 +81,23 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        $item = Transaction::with([
-            'user','product', 'user_detail.user_families', 'services'
-            ])->findOrFail($id);
+        // $item = Transaction::with([
+        //     'user','product', 'user_detail.user_families', 'services'
+        //     ])->findOrFail($id);
+
+
+            $item = Transaction::where([
+                'transaction_status' => 'SUCCESS'
+            ])->with([
+                'user','product', 'user_detail.user_families', 'services'
+                ])->findOrFail($id);
+    
+            // if ($transaction == null) {
+            //     $items = array();
+            // } else {
+            //     $items = UserFamilies::Where('user_details_id', Auth::user()->user_detail->id)->get();
+    
+            // }
 
         
         return view('admin.transaction.detail', compact('item'));

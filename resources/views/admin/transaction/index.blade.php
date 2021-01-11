@@ -48,9 +48,17 @@
                     @endif
                     <td>
 
+                        @if ($item->transaction_status == 'SUCCESS')
                         <a href="{{ route('transaction.show', $item->id) }}" class="btn btn-primary">
                             <i class="fa fa-eye"></i>
                             </a>
+                        @else @if ($item->transaction_status == 'PENDING')
+                        <a href="{{ route('transaction.show', $item->id) }}" class="btn btn-primary">
+                            <i class="fa fa-eye"></i>
+                            </a>
+                        @endif
+                        @endif
+                        
 
                         <a href="{{ route('transaction.edit', $item->id) }}" class="btn btn-warning">
                         <i class="fa fa-pencil-alt"></i>

@@ -28,8 +28,8 @@
         
         
         <tr>
-            <th>ID</th>
-            <td>{{ $item->id }}</td>
+            <th>No Invoice</th>
+            <td>{{ $item->no_invoice }}</td>
         </tr>
         <tr>
             <th>Paket Langganan</th>
@@ -66,7 +66,7 @@
             <th>Scan KK</th>
             <td><a data-fancybox="gallery" href="{{ Storage::url($item->user_detail->scan_kk) }}"><img src="{{ Storage::url($item->user_detail->scan_kk) }}" style="width:100%;max-width:300px"></a></td>
         </tr>
-     
+
         <tr>
             <th>Daftar Kartu Keluarga</th>
             <td>

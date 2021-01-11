@@ -16,6 +16,7 @@ class DashboardController extends Controller
         return view('admin.dashboard.index',[
             'anggota' => UserFamilies::where('userfamily_status', 'ACTIVE', 'id' )->count(),
             'service' => Service::where('service_status', 'ACCEPTED')->count(),
+            'pengaduan_musibah' => Service::count(),
             'transaction' => Transaction::count(),
             'transaction_pending' => Transaction::where('transaction_status', 'PENDING')->count(),
             'transaction_success' => Transaction::where('transaction_status', 'SUCCESS')->count(),
