@@ -72,7 +72,7 @@
         
         <tr>
             <td colspan="7" class="text-center">
-                <a href="{{ route ('info-tagihan.edit', $item->id)}}" class="btn btn-primary"><i class="fa fa-pencil-alt"> Ubah data</i>
+                <a href="{{ route ('info-tagihan.edit', $item->id)}}" class="btn btn-primary"><i class="fa fa-pencil-alt"> </i> Ubah data
                 </a>
             </td>
         </tr>

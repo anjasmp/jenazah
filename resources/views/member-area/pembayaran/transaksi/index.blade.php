@@ -1,6 +1,6 @@
 @extends('member-area.templates.default')
 
-@section('judul','Riwayat Pembayaran')
+@section('judul','Riwayat Transaksi')
 @section('content')
 
 
@@ -16,11 +16,12 @@
         <table class="table table-striped" id="tablepost">
             <thead>
                 <tr>
-                    <th>Invoice Number</th>
-                    <th>Invoice Date</th>
-                    <th>Due Date</th>
+                    <th>No</th>
+                    <th>No Invoice</th>
+                    <th>Paket Keanggotaan</th>
+                    <th>Periode</th>
+                    <th>Total (Rp)</th>
                     <th>Status</th>
-                    <th>Amount</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -28,17 +29,30 @@
             <tbody>
                 @forelse ($items as $key => $item)
                 <tr>
+                    @if ($item->transaction_total == 250000)
+                    <td> <span class="badge rounded-pill bg-primary" style="color: white;">{{ $key + 1 }}</span></td>
+                    @else
+                    <td>{{ $key + 1 }}</td>
+                    @endif
+                    
                     <td>{{ $item->no_invoice }}</td>
-                    <td>{{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}</td>
-                    <td>{{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}</td>
-                    <td>{{ $item->transaction_status}}</td>
+                    <td>{{ ($item->product->title) }}</td>
+                    <td>{{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }} s/d {{ Carbon\Carbon::parse($item->masa_aktif)->format('d-m-Y') }}</td>
                     <td><div class="myDIV">{{ $item->transaction_total }}</div></td>
-                    <td>
+                    @if ($item->transaction_status == 'SUCCESS')
+                    <td><span class="badge badge-pill badge-primary" >{{ $item->transaction_status}}</span></td>
+                    @else @if ($item->transaction_status == 'IN_CART')
+                    <td><span class="badge badge-pill badge-danger" >{{ $item->transaction_status}}</span></td>
+                    @else @if ($item->transaction_status == 'PENDING')
+                    <td><span class="badge badge-pill badge-warning" >{{ $item->transaction_status}}</span></td>
+                    @else
+                    <td><span class="badge badge-pill badge-secondary" >{{ $item->transaction_status}}</span></td>
+                    @endif
+                    @endif
+                    @endif
                         
 
-                        <a href="{{ route('transaksi.show', $item->id) }}" class="btn btn-dark" target="_blank">
-                        <i class="fa fa-download" aria-hidden="true"></i>
-                        </a>
+                    <td>
 
                         @if ( $item->transaction_status == 'SUCCESS')
                             
@@ -46,11 +60,21 @@
                         
                         @else
                             <a href="{{ route ('transaksi.pay' , $item->id)}}" class="btn btn-danger">
-                            <i class="fa fa-credit-card"> Pay</i>
+                            <i class="fa fa-credit-card"></i> Bayar
                             </a>
                         @endif
                         
                         @endif
+
+                        <hr>
+
+                        <a href="{{ route('transaksi.show', $item->id) }}" class="btn btn-dark" target="_blank">
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                        </a>
+
+                        
+
+                       
                         
                     </td>
 

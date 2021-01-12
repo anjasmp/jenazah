@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Member;
 
+use Mail;
+use App\Mail\TransactionSuccess;
+
 use App\Http\Controllers\Controller;
 use App\Pelayanan;
 use App\Service;
@@ -11,6 +14,7 @@ use App\UserFamilies;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class PelayananController extends Controller
 {
@@ -22,10 +26,11 @@ class PelayananController extends Controller
 
     public function home()
     {
+        // NOTIFIKASI
         $transaction = Transaction::where([
             'users_id' => Auth::id(),
             'transaction_status' => 'SUCCESS',
-        ])->first();
+        ])->with(['product','user','user_detail.user_families'])->first();
         
         // return $transaction;
         $end_transaction = null;
@@ -40,65 +45,72 @@ class PelayananController extends Controller
     
             $masa_aktif = $now->diffInDays($end, false);
 
+
+
+            if ($masa_aktif <= 7) {
+                $pending = Transaction::where([
+                    'users_id' => Auth::id(),
+                    'transaction_status' => 'PENDING',
+                    ])->first();
+                    
+                    // return $pending;
+                    if ($pending == null) {
+                    if ($transaction->transaction_total >= 265000 ) {
+                        $transaction->transaction_total = 250000;
+                    }
+
+                    $new_transaction = Transaction::create([
+                        'products_id' => $transaction->products_id,
+                        'users_id' => Auth::user()->id,
+                        'masa_aktif' => Carbon::parse($transaction->masa_aktif)->addYear(1),
+                        'register' => 1,
+                        'transaction_total' => $transaction->transaction_total,
+                        'transaction_status' => 'PENDING'
+                    ]);
+
+                    $transaction->user_detail()->update([
+                        'transactions_id' => $new_transaction->id,
+                    ]);
+            
+                    // echo $transaction->no_invoice;
+                 }
+        
+            }
+
             // return $masa_aktif;
 
            if ($masa_aktif < 0) {
-            $transaction->update(['transaction_status' => 'ENDED SUBSCRIPTION']);
+            $end_transaction = $transaction->update(['transaction_status' => 'FINISHED']);
+            $masa_aktif = null;
            }
     
         } else {
             $end_transaction = Transaction::where([
                 'users_id' => Auth::id(),
-                'transaction_status' => 'ENDED SUBSCRIPTION',
+                'transaction_status' => 'FINISHED',
             ])->first();
 
             // return $end_transaction;
 
-        } 
-        
-
-
-
-
-
-
-
-
-
-
-        $user_detail = UserDetails::where([
-            'users_id' => Auth::id(),
-        ])->first();
-
-
-
-        if ($user_detail == null) {
-
-            $item = array();
-
-        } else {
-
-            $item = Transaction::where([
-                'transaction_status' => 'PENDING',
-            ])->first();
-
-
-            if ($item == null) {
-
-                $item = array();
-
-            } else {
-
-                $item = Transaction::where([
-                    'users_id' => Auth::id(),
-                ])->first();
-            }
-            
         }
 
-        // return $item;
+        // Mail::to($transaction->user->email)->send(
+        //     new TransactionSuccess($transaction)
+        // );
 
 
+
+
+        // TOMBOL PELAYANAN
+        $items = Transaction::where([
+            'users_id' => Auth::id(),
+        ])->latest()->first();
+
+        // return $items;
+
+
+
+        // GRAFIK INFO
         $anggota = UserFamilies::Where('user_details_id', Auth::id())
             ->where(function ($query) {
                 $query->where('userfamily_status', 'ACTIVE');
@@ -113,7 +125,7 @@ class PelayananController extends Controller
         // return $masa_aktif;
 
         return view('member-area.pelayanan.home',[
-            'item' => $item,
+            'items' => $items,
             'anggota' => $anggota,
             'service' => $service,
             'masa_aktif' => $masa_aktif,

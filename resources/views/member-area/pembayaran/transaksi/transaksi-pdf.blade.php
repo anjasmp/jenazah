@@ -242,7 +242,7 @@
                         <h1 class="invoice-id">{{ $items->no_invoice }}</h1>
                         
                         <div class="date">Date of Invoice: {{ Carbon\Carbon::parse($items->created_at)->format('d-m-Y') }}</div>
-                        <div class="date">Due Date: {{ Carbon\Carbon::parse($items->created_at)->format('d-m-Y') }}</div>
+                       
                         <div class="invoice-id">STATUS: {{ $items->transaction_status }} </div>
                     </div>
                 </div>
@@ -254,7 +254,7 @@
                             <th>No</th>
                             <th class="text-left">TITLE</th>
                             <th class="text-left">TYPE</th>
-                            <th class="text-left">ACTIVE UNTIL</th>
+                            <th class="text-left">PERIOD</th>
                             <th class="text-left">REGISTER</th>
                             <th class="text-right">PRICE</th>
                             <th class="text-right">TOTAL</th>
@@ -265,7 +265,7 @@
                             <td class="no">{{ $items->product->id }}</td></td>
                             <td class="text-left">{{ $items->product->title }}</td>
                             <td class="text-left">{{ $items->product->type }}</td>
-                            <td class="text-left">{{ Carbon\Carbon::parse($items->masa_aktif)->format('d-m-Y') }}</td>
+                            <td>{{ Carbon\Carbon::parse($items->created_at)->format('d-m-Y') }} s/d {{ Carbon\Carbon::parse($items->masa_aktif)->format('d-m-Y') }}</td>
                             <td class="unit"><span style="cellspacing="0" cellpadding="0"">Rp. </span>{{ $items->product->register }}</td>
                             <td class="unit"><span style="cellspacing="0" cellpadding="0"">Rp. </span>{{ $items->product->price }}</td>
                             <td class="total"><span style="cellspacing="0" cellpadding="0"">Rp. </span>{{ $items->transaction_total }}</td>
@@ -295,6 +295,8 @@
             </main>
             <footer>
                Faktur dibuat di komputer dan valid tanpa tanda tangan dan stempel.
+               <br>
+               Dicetak {{ date('Y-m-d H:i:s') }}
             </footer>
         </div>
         <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->

@@ -1,70 +1,61 @@
 @extends('admin.templates.default')
 
-@section('sub-judul','Tambah Paket Pilihan')
+@section('sub-judul','Input Musibah Kematian')
 @section('content')
 
-
-<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
-    <div class="card-body" style="box-shadow: 0 10px 29px 0 rgba(68, 88, 144, 0.1); padding-bottom: 70px; ">
-        @if(Session::has('success'))
+<div class="card-body" style="box-shadow: 0 10px 29px 0 rgba(68, 88, 144, 0.1); padding-bottom: 70px;">
+    @if(Session::has('success'))
         <div class="alert alert-success" role="alert">
             {{ Session('success')}}
         </div>
-        @endif
-
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
-
-        <form action="{{ route('product.store')}}" method="POST">
-            @csrf
-            <div class="form-group">
-                <label for="title">Nama</label>
-            <input type="text" class="form-control" name="title" placeholder="Nama" value="{{ old('title') }}">
-            </div>
-            <div class="form-group">
-                <label for="title">Fitur</label>
-                <textarea class="form-control" name="features" id="fitur" rows="10">{{ old('features') }}</textarea>
-            </div>
-            <div class="form-group">
-                <label for="title">About</label>
-                <textarea class="form-control" name="about" id="about" rows="10">{{ old('about') }}</textarea>
-            </div>
-            <div class="form-group">
-                <label for="title">Tipe </label>
-            <input type="text" class="form-control" name="type" placeholder="Tipe" value="{{ old('type') }}">
-            </div>
-            <div class="form-group">
-                <label for="title">Biaya Pendaftaran </label>
-            <input type="text" class="form-control" name="register" placeholder="Pendaftaran" value="{{ old('type') }}">
-            </div>
-            <div class="form-group">
-                <label for="title">Harga</label>
-            <input type="number" class="form-control" name="price" placeholder="Harga" value="{{ old('price') }}">
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Save</button>
-        </form>
-
-
+    @endif
+    
+    
+    @if(count($errors)>0)
+    @foreach($errors->all() as $error)
+    <div class="alert alert-danger" role="alert">
+        {{ $error }}
     </div>
+
+    @endforeach
+    @endif
+
+    <form action="{{ route('daftar-anggota.store_kematian', $item->id)}}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="form-group">
+            <label for="nama">Nama</label>
+            <h3><span style="font-weight: bold; color: #039ea3">{{$item->name }}</span></h3>
+        </div>
+        <div class="form-group">
+            <label for="nama">Nama Ayah Alm</label>
+        <input type="text" class="form-control" name="nama_ayah" placeholder="Nama Ayah Alm" value="">
+        </div>
+        <div class="form-group">
+            <label for="title">Tanggal Wafat</label>
+            <input type="date" name="tanggal_wafat" id="date" class="form-control" style="width: 100%; display: inline;">
+        </div>
+        <div class="form-group">
+            <label for="title">Jam Wafat</label>
+            <input type="time" class="form-control" name="waktu_wafat" placeholder="Jam Wafat" value="">
+        </div>
+        <div class="form-group">
+            <label for="title">Tempat Wafat </label>
+        <input type="text" class="form-control" name="tempat_wafat" placeholder="Tempat Wafat" value="">
+        </div>
+        <div class="form-group">
+            <label for="title">Tempat Pemakaman</label>
+        <input type="text" class="form-control" name="tempat_pemakaman" placeholder="Tempat Pemakanan" value="">
+        </div>
+        <div class="form-group">
+            <label for="title">Upload KTP atau KK</label>
+        <input type="file" class="form-control" name="kk_atau_ktp" placeholder="Upload Scan KK atau KTP" value="">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Save</button>
+    </form>
+
+    
+
 </div>
 
 
 @endsection
-
-@push('scripts')
-<script src="{{ asset('src/ckeditor/ckeditor.js')}}"></script>
-<script>
-CKEDITOR.replace( 'about' );
-</script>
-<script src="{{ asset('src/ckeditor/ckeditor.js')}}"></script>
-<script>
-CKEDITOR.replace( 'features' );
-</script>
-@endpush

@@ -86,11 +86,16 @@ Route::delete('/transaction-product/kill/{id}', 'Admin\TransactionProductControl
 Route::resource('transaction-product', 'Admin\TransactionProductController');
 
 
+Route::get('/daftar-anggota/create_kematian/{id}', 'Admin\MemberController@create_kematian')->name('daftar-anggota.create_kematian');
+Route::post('/daftar-anggota/store_kematian/{id}', 'Admin\MemberController@store_kematian')->name('daftar-anggota.store_kematian');
 
 Route::get('/daftar-anggota/cetak_pdf', 'Admin\MemberController@cetak_pdf')->name('daftar-anggota.cetak_pdf');
 Route::get('/daftar-anggota/show-deletes', 'Admin\MemberController@show_deletes')->name('daftar-anggota.show-deletes');
 Route::get('/daftar-anggota/restore/{id}', 'Admin\MemberController@restore')->name('daftar-anggota.restore');
 Route::delete('/daftar-anggota/kill/{id}', 'Admin\MemberController@kill')->name('daftar-anggota.kill');
+
+
+
 
 Route::resource('daftar-anggota', 'Admin\MemberController');
 

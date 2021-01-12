@@ -46,9 +46,9 @@ class CheckoutController extends Controller
         
         // return $transaction;
 
-        if ($transaction->exists()) {
+        if ($transaction !== null) {
             return redirect()->route('product.checkoutfamilies', $transaction->id);
-        } 
+        } else
 
 
 

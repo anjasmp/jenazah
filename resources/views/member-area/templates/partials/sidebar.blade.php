@@ -29,7 +29,7 @@
                     <a class="sidebar-link sidebar-link" href="{{ route('langganan.index')}}"
                         aria-expanded="false">
                         <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                        <span class="hide-menu">Langganan</span>
+                        <span class="hide-menu">Keanggotaan</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

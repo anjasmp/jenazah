@@ -16,7 +16,7 @@
             <h4 class="alert-heading">Waktunya perpanjang!</h4>
             <p>Masa aktif kamu akan segera berakhir, lakukan perpanjang pembayaran sekarang!</p>
             <hr>
-            <a href="http://" class="btn btn-primary" >Perpanjang Sekarang!</a>
+            <a href="{{ route ('transaksi.index')}}" class="btn btn-primary" >Perpanjang Sekarang!</a>
         </div>
         @endif
 
@@ -24,22 +24,28 @@
         @if ($end_transaction !== null)
         <div class="alert alert-danger" role="alert">
             <h4 class="alert-heading">Yuk, Lakukan pembayaran!</h4>
-            <p>Masa aktif sudah berakhir, aktifkan keanggotaan untuk tetap mendapatkan pelayanan!</p>
+            <p>Jatuh tempo! sudah waktunya, aktifkan keanggotaan untuk tetap mendapatkan pelayanan!</p>
             <hr>
-            <a href="http://" class="btn btn-danger" >Aktifkan Sekarang!</a>
+            <a href="{{ route ('transaksi.index')}}" class="btn btn-danger" >Aktifkan Sekarang!</a>
         </div>
-
         @endif
 
+        @if (!is_null($items))
+            
+            @if ($items->transaction_status == 'SUCCESS')
+            <h1 style="text-align: center;"><span style="color: #03877e;"> <br>PERMINTAAN PELAYANAN JENAZAH</span> </h1>
 
-        @if ($item)
-        <h1 style="text-align: center;"><span style="color: #03877e;"> <br>PERMINTAAN PELAYANAN JENAZAH</span> </h1>
-        @else @if ($item)
-        <h1 style="text-align: center;"><span style="color: #03877e;"> <br>STATUS ANGGOTA : NON ACTIVE </span> </h1>
-        @else
+            @elseif ($items->transaction_status == 'PENDING' || $items->transaction_status == 'FINISHED' )
+            <h1 style="text-align: center;"><span style="color: #03877e;"> <br>STATUS ANGGOTA : NON ACTIVE </span> </h1>
+            @else
         <h1 style="text-align: center;"><span style="color: #03877e;"> <br>ANDA BELUM TERDAFTAR </span> </h1>
         @endif
+        @else
+        <h1 style="text-align: center;"><span style="color: #03877e;"> <br>ANDA BELUM TERDAFTAR </span> </h1>
+
         @endif
+
+
 
 
     </div>
@@ -48,13 +54,17 @@
     <div class="card-group">
         <div class="card border-center">
 
-            @if ($item)
+
+            @if (!is_null($items))
+            
+            @if ($items->transaction_status == 'SUCCESS')
             <a href="{{ route ('pelayanan.create')}}" class="btn btn-danger">
                 <div class="card-body">
                     <h2>KLIK DISINI !</h2>
                 </div>
                 </a>
-            @else @if ($item)
+
+            @elseif ($items->transaction_status == 'PENDING' || $items->transaction_status == 'FINISHED' )
             <div class="card-group">
                 <div class="card border-center">
                     <a href="{{ route ('transaksi.index')}}" class="btn btn-danger">
@@ -74,9 +84,27 @@
                     </a>
                 </div>
             </div>
-            @endif
-            @endif
+        @endif
+        @else
+        <div class="card-group">
+            <div class="card border-center">
+                <a href="{{ route ('product.list')}}" class="btn btn-danger">
+                <div class="card-body">
+                    <h2>Daftar Keanggotaan</h2>
+                </div>
+                </a>
+            </div>
+        </div>
 
+        @endif
+
+
+            
+    
+          
+   
+            
+        
         </div>
         </div>
 

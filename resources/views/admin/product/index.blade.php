@@ -42,6 +42,8 @@
                         <a href="{{ route('product.edit', $item->id) }}" class="btn btn-info ">
                         <i class="fa fa-pencil-alt"></i></a>
 
+                        <hr>
+
                         <form action="{{ route('product.destroy', $item->id) }}" method="POST" class="d-inline">
                         @csrf
                         @method('delete')

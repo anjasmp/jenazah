@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Service;
 use App\UserFamilies;
 use App\Transaction;
+use Illuminate\Foundation\Auth\User;
 use PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MemberController extends Controller
 {
@@ -37,9 +40,13 @@ class MemberController extends Controller
          set_time_limit (300);
         
         $pdf = PDF::loadView('admin.members.members-pdf', ['items'=>$items]);
+        $pdf->setPaper('A4', 'landscape');
         $pdf->save(storage_path().'_daftaranggota.pdf');
         return $pdf->stream();
     }
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -48,7 +55,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+      
     }
 
     /**
@@ -59,7 +66,7 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -70,7 +77,7 @@ class MemberController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -151,5 +158,57 @@ class MemberController extends Controller
         $item->forceDelete();
 
         return redirect()->back()->with('success', 'Data berhasil dihapus permanen');
+    }
+
+    public function create_kematian($id)
+    {
+
+        $item = UserFamilies::findOrFail($id);
+
+        return view('admin.members.create', compact('item'));
+    }
+
+    public function store_kematian(Request $request, $id)
+    {
+        $this->validate($request, [
+            'nama_ayah' => 'required|string',
+            'tanggal_wafat' => 'date',
+            'waktu_wafat' => 'date_format:H:i',
+            'tempat_wafat' => 'string',
+            'tempat_pemakaman' => 'string',
+            'kk_atau_ktp'  => 'image',
+            'userfamily_status' => 'string'
+
+        ]);
+
+
+        $data = $request->all();
+        
+
+        $data['kk_atau_ktp'] = $request->file('kk_atau_ktp')->store(
+            'assets/kk_atau_ktp', 'public'
+        );        
+
+        $user_families = UserFamilies::with(['user_detail.transactions'])->findOrFail($id);
+
+        // return $user_families;
+
+        UserFamilies::findOrFail($id)
+        ->update(['userfamily_status' => 'PENDING']);
+
+        Service::create([
+            'transactions_id' => $user_families->user_detail->transactions->id,
+            'user_families_id' => $user_families->id,
+            'nama_ayah' => $data['nama_ayah'],
+            'tanggal_wafat' => $data['tanggal_wafat'],
+            'waktu_wafat' => $data['waktu_wafat'],
+            'tempat_wafat' => $data['tempat_wafat'],
+            'tempat_pemakaman' => $data['tempat_pemakaman'],
+            'kk_atau_ktp' => $data['kk_atau_ktp'],
+            'service_status' => 'PROCESS'
+        ]);
+
+
+        return redirect()->route('daftar-anggota.index')->with('success','Data berhasil diinput');
     }
 }

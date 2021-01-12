@@ -1,6 +1,6 @@
 @extends('member-area.templates.default')
 
-@section('judul','Langganan Saat ini')
+@section('judul','Paket Keanggotaan Saat ini')
 @section('content')
 
 
@@ -16,7 +16,7 @@
         <table class="table table-striped" id="tablepost">
             <thead>
                 <tr>
-                    <th>Paket Langganan</th>
+                    <th>Paket Keanggotaan</th>
                     <th>Penanggung Jawab</th>
                     <th>Tanggal Aktif</th>
                     <th>Tanggal Berakhir</th>
@@ -45,7 +45,7 @@
                 </tr>
                 @else
                 <tr>
-                    <td colspan="7" class="text-center">Kamu belum berlangganan</td>
+                    <td colspan="7" class="text-center">Paket Keanggotaan belum aktif</td>
             
                 </tr>
                 @endif

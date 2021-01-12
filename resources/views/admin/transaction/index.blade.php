@@ -20,10 +20,11 @@
         <table class="table table-striped" id="tablepost">
             <thead>
                 <tr>
+                    <th>No</th>
                     <th>No Invoice</th>
-                    <th>Paket Langganan</th>
-                    <th>Nama</th>
-                    <th>Masa Aktif</th>
+                    <th>Paket Keanggotaan</th>
+                    <th>Penanggung Jawab</th>
+                    <th>Periode</th>
                     <th>Total (Rp)</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -33,19 +34,29 @@
             <tbody>
                 @forelse ($items as $key => $item)
                 <tr>
+                    @if ($item->transaction_total == 250000)
+                    <td> <span class="badge rounded-pill bg-primary" style="color: white;">{{ $key + 1 }}</span></td>
+                    @else
+                    <td>{{ $key + 1 }}</td>
+                    @endif
+                    
                     <td>{{ $item->no_invoice }}</td>
                     <td>{{ ($item->product->title) }}</td>
                     <td>{{ $item->user->name }}</td>
-                    <td>{{ Carbon\Carbon::parse($item->masa_aktif)->format('d-m-Y') }}</td>
+                    <td>{{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }} s/d {{ Carbon\Carbon::parse($item->masa_aktif)->format('d-m-Y') }}</td>
                     <td><div class="myDIV">{{ $item->transaction_total }}</div></td>
                     @if ($item->transaction_status == 'SUCCESS')
                     <td><span class="badge badge-pill badge-primary" >{{ $item->transaction_status}}</span></td>
                     @else @if ($item->transaction_status == 'IN_CART')
                     <td><span class="badge badge-pill badge-danger" >{{ $item->transaction_status}}</span></td>
-                    @else
+                    @else @if ($item->transaction_status == 'PENDING')
                     <td><span class="badge badge-pill badge-warning" >{{ $item->transaction_status}}</span></td>
+                    @else
+                    <td><span class="badge badge-pill badge-secondary" >{{ $item->transaction_status}}</span></td>
                     @endif
                     @endif
+                    @endif
+                    
                     <td>
 
                         @if ($item->transaction_status == 'SUCCESS')
@@ -59,10 +70,13 @@
                         @endif
                         @endif
                         
+                        <hr>
 
                         <a href="{{ route('transaction.edit', $item->id) }}" class="btn btn-warning">
                         <i class="fa fa-pencil-alt"></i>
                         </a>
+
+                        <hr>
 
                         <form action="{{ route('transaction.destroy', $item->id) }}" method="POST" class="d-inline">
                         @csrf

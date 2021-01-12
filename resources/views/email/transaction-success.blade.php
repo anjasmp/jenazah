@@ -271,7 +271,7 @@
                         <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
                           <tr>
                             <td align="left" style="font-size:0px;padding:10px 25px;padding-right:25px;padding-left:25px;word-break:break-word;">
-                              <div style="font-family:Assistant, Helvetica, Arial, sans-serif;font-size:18px;line-height:20px;text-align:left;color:#000000;">Assalamu'alaikum, {{ $data->user->name }} <br><br> Tanda bukti pendaftaran. <br> Nomor Pendaftaran <strong>#{{$data->id }}</strong></div>
+                              <div style="font-family:Assistant, Helvetica, Arial, sans-serif;font-size:18px;line-height:20px;text-align:left;color:#000000;">Assalamu'alaikum, {{ $data->user->name }} <br><br> Tanda bukti pendaftaran. <br> Nomor Pendaftaran <strong>#{{$data->no_invoice }}</strong></div>
                             </td>
                           </tr>
                           <tr>

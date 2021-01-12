@@ -79,7 +79,9 @@ class TransaksiController extends Controller
          set_time_limit (300);
         
         $pdf = PDF::loadView('member-area.pembayaran.transaksi.transaksi-pdf', ['items'=>$items]);
+        // $pdf->setPaper('A4', 'landscape');
         $pdf->save(storage_path().'_transaction.pdf');
+        
         return $pdf->stream();
     }
 

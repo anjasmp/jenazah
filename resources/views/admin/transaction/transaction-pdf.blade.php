@@ -243,9 +243,10 @@ content: 'Rp';
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Paket Langganan</th>
-                            <th>Nama</th>
-                            <th>Masa Aktif</th>
+                            <th>No Invoice</th>
+                            <th>Paket Keanggotaan</th>
+                            <th>Penanggung Jawab</th>
+                            <th>Periode</th>
                             <th>Total (Rp)</th>
                             <th>Status</th>
                         </tr>
@@ -254,12 +255,19 @@ content: 'Rp';
                         @forelse ($items as $key => $item)
                         <tr>
                             <td>{{ $key + 1 }}</td>
+                            <td>{{ $item->no_invoice }}</td>
                             <td>{{ ($item->product->title) }}</td>
                             <td>{{ $item->user->name }}</td>
-                            <td>{{ Carbon\Carbon::parse($item->masa_aktif)->format('d-m-Y') }}</td>
+                            <td>{{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }} s/d {{ Carbon\Carbon::parse($item->masa_aktif)->format('d-m-Y') }}</td>
                             <td><div class="myDIV">{{ $item->transaction_total }}</div></td>
-        
-                            <td>{{ $item->transaction_status }}</td>
+                            @if ($item->transaction_status == 'SUCCESS')
+                            <td><span class="badge badge-pill badge-primary" >{{ $item->transaction_status}}</span></td>
+                            @else @if ($item->transaction_status == 'IN_CART')
+                            <td><span class="badge badge-pill badge-danger" >{{ $item->transaction_status}}</span></td>
+                            @else
+                            <td><span class="badge badge-pill badge-warning" >{{ $item->transaction_status}}</span></td>
+                            @endif
+                            @endif
                             
         
                         </tr>

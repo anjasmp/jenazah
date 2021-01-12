@@ -49,10 +49,10 @@
 
                     <td>
 
-                        @if ($item->user_detail->transactions->transaction_status === 'SUCCESS')
+                        @if ($item->user_detail->transactions->transaction_status == 'SUCCESS')
                             <a href="{{ route('daftar-anggota.edit', $item->id) }}" class="btn btn-info">
                         <i class="fa fa-pencil-alt"></i></a>
-                        @endif
+                        @endif 
                         
 
                         <form action="{{ route('daftar-anggota.destroy', $item->id) }}" method="POST" class="d-inline">
@@ -62,6 +62,15 @@
                             <i class="fa fa-trash"></i>
                         </button>
                         </form>
+
+                        <hr>
+
+                        @if ($item->userfamily_status == 'ACTIVE' && $item->user_detail->transactions->transaction_status == 'SUCCESS')
+                        <a href="{{ route('daftar-anggota.create_kematian', $item->id) }}" class="btn btn-secondary">
+                            <i class="fa fa-medkit" aria-hidden="true"></i> Kematian</a>
+
+                            @endif 
+                        
                     </td>
 
                 </tr>

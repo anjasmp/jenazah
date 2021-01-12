@@ -43,6 +43,7 @@ class TransactionController extends Controller
          set_time_limit (300);
         
         $pdf = PDF::loadView('admin.transaction.transaction-pdf', ['items'=>$items]);
+        $pdf->setPaper('A4', 'landscape');
         $pdf->save(storage_path().'_transaction.pdf');
         return $pdf->stream();
     }
@@ -87,9 +88,7 @@ class TransactionController extends Controller
         //     ])->findOrFail($id);
 
 
-            $item = Transaction::where([
-                'transaction_status' => 'SUCCESS'
-            ])->with([
+            $item = Transaction::with([
                 'user','product', 'user_detail.user_families', 'services'
                 ])->findOrFail($id);
     
@@ -135,23 +134,40 @@ class TransactionController extends Controller
             ])->findOrFail($id);
 
 
-        if ($item->transaction_status = 'SUCCESS') {
+        if ($data['transaction_status'] == 'SUCCESS') {
             $item->user->syncRoles('member');
+            // $data['masa_aktif'] = [Carbon::parse()->addYear(1)];
         } else {
             $item->user->syncRoles('user');
         }
 
-        $data = ['masa_aktif' => Carbon::now()->addYear(1)];
 
 
-       
+
+           if ($data['transaction_status'] == 'FINISHED' && $item->transaction_status == 'SUCCESS') {
+            if ($item->transaction_total >= 265000 ) {
+                $item->transaction_total = 250000;
+            }
+
+            $new_transaction = Transaction::create([
+                'products_id' => $item->products_id,
+                'users_id' => $item->users_id,
+                'masa_aktif' => Carbon::parse($item->masa_aktif)->addYear(1),
+                'register' => 1,
+                'transaction_total' => $item->transaction_total,
+                'transaction_status' => 'PENDING'
+            ]);
+
+            $item->user_detail()->update([
+                'transactions_id' => $new_transaction->id,
+            ]);
+           }
+    
+            // echo $transaction->no_invoice;
+   
 
         $item->update($data);
-        // $data = $request->all();
-        // $transaction_products->transaction_status = $data['transaction_status'];
-        // $transaction_products->save();
-
-        // $transaction->update($data);
+        
         return redirect()->route('transaction.index')->with('success','Data berhasil diubah');
     }
 

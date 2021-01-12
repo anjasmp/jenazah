@@ -36,7 +36,7 @@
             <option value="PENDING">Pending</option>
             <option value="SUCCESS">Success</option>
             <option value="CANCEL">Cancel</option>
-            <option value="FAILED">Failed</option>
+            <option value="FINISHED">Finished</option>
 
             </select>
         </div>
