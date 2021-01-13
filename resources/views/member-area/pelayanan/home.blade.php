@@ -14,7 +14,7 @@
 
         <div class="alert alert-success" role="alert">
             <h4 class="alert-heading">Waktunya perpanjang!</h4>
-            <p>Masa aktif kamu akan segera berakhir, lakukan perpanjang pembayaran sekarang!</p>
+            <p>Periode keanggotaan kamu akan segera berakhir, lakukan perpanjang pembayaran sekarang!</p>
             <hr>
             <a href="{{ route ('transaksi.index')}}" class="btn btn-primary" >Perpanjang Sekarang!</a>
         </div>

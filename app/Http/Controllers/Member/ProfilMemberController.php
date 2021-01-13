@@ -77,13 +77,11 @@ class ProfilMemberController extends Controller
         $this->validate($request, [
             'name' => 'required|string|max:100',
             'email' => 'required', 'string', 'email', 'max:255', 'unique:users',
-            'password' => 'nullable|min:6',
         ]);
 
         $register_admin = [
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request['password'])
         ];
 
         User::whereId($id)->update($register_admin);

@@ -21,4 +21,6 @@
 
     Route::resource('langganan', 'Member\LanggananController');
 
+    Route::resource('update-password','Member\PasswordController');
+
 

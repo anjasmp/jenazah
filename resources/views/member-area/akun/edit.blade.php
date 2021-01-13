@@ -36,17 +36,7 @@
             <input type="email" class="form-control" name="email" value="{{$item->email}}">
         </div>
 
-        <div class="form-group">
-            <h4 class="card-title">Password</h4>
-            <input type="password" class="form-control" name="password" value="{{$item->password}}">
-            <p class="text-warning">Biarkan kosong, jika tidak ingin mengganti password</p>
-        </div>
-
-        <div class="form-group">
-            <h4 class="card-title">Password Confirm</h4>
-            <input type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" value="{{$item->password}}">
-            <p class="text-warning">Biarkan kosong, jika tidak ingin mengganti password</p>
-        </div>
+       
         <div class="form-group">
             <button class="btn btn-primary" style="float: right;">Ubah</button>
         </div>

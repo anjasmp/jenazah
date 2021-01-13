@@ -142,7 +142,11 @@ class ServiceController extends Controller
     {
         $item = Service::findOrFail($id);
 
+
         $item->delete();
+
+        
+
         return redirect()->route('service.index')->with('success','Data berhasil dihapus (Cek Recyle Bin');
     }
 

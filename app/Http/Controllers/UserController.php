@@ -27,7 +27,11 @@ class UserController extends Controller
     public function index()
     {
         $user = User::orderBy('id')->get();
+        // $roles = Role::where('name', 'member')->orWhere('name', 'user')->get();
+
         // return $roles;
+
+    
         return view('admin.user.index', compact('user'));
     }
 
@@ -39,6 +43,8 @@ class UserController extends Controller
     public function create()
     {
         $role = AppRole::orderBy('name', 'ASC')->get();
+
+      
         return view('admin.user.create', compact('role'));
     }
 
@@ -137,6 +143,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $roles = Role::all()->pluck('name');
+        
         return view('admin.user.role', compact('user', 'roles'));
     }
 

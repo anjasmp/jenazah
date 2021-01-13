@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
-use App\Service;
-use App\Transaction;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class LanggananController extends Controller
+class PasswordController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -17,29 +17,9 @@ class LanggananController extends Controller
      */
     public function index()
     {
-        
-        
-        $transaction = Transaction::where([
-            'users_id' => Auth::id(),
-            'transaction_status' => 'SUCCESS'
-        ])->with(['product','user'])->latest()->first();
+        $users = User::find(Auth::user()->id);
 
-        if ($transaction == null) {
-            $items = array();
-        } 
-        else {
-            $items = Transaction::where([
-                'users_id' => Auth::id()
-            ])->with(['product','user'])->latest()->first();
-
-        }
-
-        // return $items;
-      
-
-        return view ('member-area.pembayaran.langganan.index',[
-            'items' => $items
-        ]);
+        return view('member-area.akun.edit-password',compact('users'));
     }
 
     /**
@@ -82,7 +62,7 @@ class LanggananController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -94,7 +74,40 @@ class LanggananController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+ 
+            'oldpassword' => 'required',
+            'newpassword' => 'required',
+            ]);
+     
+     
+     
+           $hashedPassword = Auth::user()->password;
+     
+           if (\Hash::check($request->oldpassword , $hashedPassword )) {
+     
+             if (!\Hash::check($request->newpassword , $hashedPassword)) {
+     
+                  $users = User::find(Auth::user()->id);
+                  $users->password = bcrypt($request->newpassword);
+                  User::where( 'id' , Auth::user()->id)->update( array( 'password' =>  $users->password));
+     
+                  session()->flash('success','password updated successfully');
+                  return redirect()->back();
+                }
+     
+                else{
+                      session()->flash('success','new password can not be the old password!');
+                      return redirect()->back();
+                    }
+     
+               }
+     
+              else{
+                   session()->flash('success','old password doesnt matched ');
+                   return redirect()->back();
+                 }
+      
     }
 
     /**

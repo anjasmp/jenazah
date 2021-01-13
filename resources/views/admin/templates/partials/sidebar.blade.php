@@ -260,6 +260,16 @@
                     </ul>
                 </li>
 
+                <li class="sidebar-item">
+                    <a class="sidebar-link sidebar-link" href="{{ route('password.index')}}"
+                    aria-expanded="false">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                        <span class="hide-menu">Ganti Password</span>
+                    </a>
+                </li>
+
+
+
                 <li class="list-divider"></li>
             </ul>
 

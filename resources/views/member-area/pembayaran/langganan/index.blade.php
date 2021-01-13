@@ -36,7 +36,7 @@
                     <td>{{ Carbon\Carbon::parse($items->masa_aktif)->format('d-m-Y') }}</td>
                     <td><div class="myDIV">{{ $items->transaction_total }}</div></td>
 
-                    @if ($items->transaction_status == 'SUCCESS')
+                    @if ($items->transaction_status === 'SUCCESS')
                     <td>ACTIVE</td>
                     @else
                     <td>NON ACTIVE</td>

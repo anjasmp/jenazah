@@ -33,11 +33,17 @@
                     @endforeach
                     <td>{{ $result->email }}</td>
                     <td>
-                        <a href="{{ route('users.roles', $result->id) }}" class="btn btn-primary btn">
-                        <i class="fa fa-user-secret"></i></a>
 
+                       
+                        <a href="{{ route('users.roles', $result->id) }}" class="btn btn-primary btn">
+                            <i class="fa fa-user-secret"></i></a>
+
+
+                      
                         <a href="{{ route('user.edit', $result->id) }}" class="btn btn-info">
-                        <i class="fa fa-pencil-alt"></i></a>
+                            <i class="fa fa-pencil-alt"></i></a>
+                      
+                        
 
                         <form action="{{ route('user.destroy', $result->id) }}" method="POST" class="d-inline">
                         @csrf

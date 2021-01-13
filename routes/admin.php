@@ -100,6 +100,9 @@ Route::delete('/daftar-anggota/kill/{id}', 'Admin\MemberController@kill')->name(
 Route::resource('daftar-anggota', 'Admin\MemberController');
 
 
+Route::resource('password','Admin\PasswordController');
+
+
 });
 
 

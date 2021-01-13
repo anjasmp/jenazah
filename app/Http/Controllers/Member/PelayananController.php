@@ -200,8 +200,8 @@ class PelayananController extends Controller
     {
         $this->validate($request, [
             'nama_ayah' => 'required|string',
-            'tanggal_wafat' => 'date',
-            'waktu_wafat' => 'date_format:H:i',
+            'tanggal_wafat' => 'date|before:tomorrow',
+            'waktu_wafat' => 'date_format:H:i|before:tomorrow',
             'tempat_wafat' => 'required|string',
             'tempat_pemakaman' => 'required|string',
             'kk_atau_ktp'  => 'required|image',
@@ -218,7 +218,7 @@ class PelayananController extends Controller
 
         $transaction = Transaction::where([
             'users_id' => Auth::id()
-        ])->first();
+        ])->latest()->first();
 
 
         UserFamilies::where('id', $data['user_families_id'] )
