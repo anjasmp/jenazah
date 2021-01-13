@@ -42,10 +42,14 @@ class PelayananController extends Controller
 
         
             $now = Carbon::now();
+
+            // Mail::to($transaction->user->email)->send(
+            //     new TransactionSuccess($transaction)
+            // );
     
             $masa_aktif = $now->diffInDays($end, false);
 
-
+            
 
             if ($masa_aktif <= 7) {
                 $pending = Transaction::where([
@@ -77,6 +81,9 @@ class PelayananController extends Controller
         
             }
 
+            
+    
+
             // return $masa_aktif;
 
            if ($masa_aktif < 0) {
@@ -94,10 +101,7 @@ class PelayananController extends Controller
 
         }
 
-        // Mail::to($transaction->user->email)->send(
-        //     new TransactionSuccess($transaction)
-        // );
-
+      
 
 
 

@@ -168,7 +168,7 @@
                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
                   <tr>
                     <td align="center" style="font-size:0px;padding:10px 25px;padding-top:30px;padding-right:25px;padding-bottom:30px;padding-left:25px;word-break:break-word;">
-                      <div style="font-family:Playfair Display, Times New Roman, serif;font-size:30px;font-weight:bold;line-height:1;text-align:center;color:#038e81;">Terima kasih sudah bergabung!</div>
+                      <div style="font-family:Playfair Display, Times New Roman, serif;font-size:30px;font-weight:bold;line-height:1;text-align:center;color:#038e81;">KEANGGOTAAN UNIT PELAYANAN JENAZAH</div>
                     </td>
                   </tr>
                 </table>
@@ -271,7 +271,7 @@
                         <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
                           <tr>
                             <td align="left" style="font-size:0px;padding:10px 25px;padding-right:25px;padding-left:25px;word-break:break-word;">
-                              <div style="font-family:Assistant, Helvetica, Arial, sans-serif;font-size:18px;line-height:20px;text-align:left;color:#000000;">Assalamu'alaikum, {{ $data->user->name }} <br><br> Tanda bukti pendaftaran. <br> Nomor Pendaftaran <strong>#{{$data->no_invoice }}</strong></div>
+                              <div style="font-family:Assistant, Helvetica, Arial, sans-serif;font-size:18px;line-height:20px;text-align:left;color:#000000;">Penanggungjawab <strong>{{ $data->user->name }}</strong>  <br> Nomor Pendaftaran <strong>#{{$data->no_invoice }}</strong> <br> Periode <strong> {{ Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }} s/d {{ Carbon\Carbon::parse($data->masa_aktif)->format('d-m-Y') }}</strong> </div>
                             </td>
                           </tr>
                           <tr>
@@ -311,13 +311,10 @@
                                   <td><strong>Tipe Pembayaran</strong></td>
                                   <td style="text-align: right;">{{ $data->product->type}}</td>
                                 </tr>
+                               
                                 <tr>
-                                  <td><strong>Biaya Pendaftaran</strong></td>
-                                  <td style="text-align: right;">{{ $data->product->register}}</td>
-                                </tr>
-                                <tr>
-                                  <td><strong>Harga Paket</strong></td>
-                                  <td style="text-align: right;">{{ $data->product->price}}</td>
+                                  <td><strong>Total</strong></td>
+                                  <td style="text-align: right;">{{ $data->transaction_total}}</td>
                                 </tr>
                               </table>
                             </td>

@@ -214,11 +214,11 @@
         <div style="min-width: 600px">
             <header>
                 <div class="row">
-                    <div class="col img" style="float: left">
+                    {{-- <div class="col img" style="float: left">
                         <a target="_blank" href="#">
                             <img src="{{ public_path('src/assets/images/upj-1.png') }}" data-holder-rendered="true" />
                             </a>
-                    </div>
+                    </div> --}}
                     <div class="col company-details">
                         <h2 class="name">
                             Unit Pelayanan Jenazah <br> Masjid Baitul Haq
