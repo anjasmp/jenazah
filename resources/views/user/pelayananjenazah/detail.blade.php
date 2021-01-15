@@ -5,7 +5,7 @@
 @section('content')
 
 
-<section class="section-details-content" id="popularContent">
+<section class="section-details-content" id="popularContent"> 
   <div class="container" style="margin-top: 30px; margin-bottom: 30px">
     <div class="row">
       <div class="col-lg-8 pl-lg-0">

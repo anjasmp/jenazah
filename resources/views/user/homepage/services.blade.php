@@ -3,56 +3,89 @@
       <div class="container" data-aos="fade-up">
 
         <header class="section-header">
-          <h3>Aktifitas Masjid</h3>
-          <p>Kajian Islam, Majelis Taklim dan Dukungan Kami</p>
+          <h3>Pelayanan Terpadu</h3>
+          <p>4 L yang sesuai syariah</p>
         </header>
 
         <div class="row justify-content-center">
 
           <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="100">
             <div class="box">
-              <div class="icon"><i class="ion-ios-book-outline" style="color: #ff689b;"></i></div>
-              <h4 class="title"><a href="">Kajian Ba'da Subuh</a></h4>
-              <p class="description">Kajian Sabtu dan ahad diisi oleh ust yang profesional</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="200">
-            <div class="box">
-              <div class="icon"><i class="ion-ios-mic-outline" style="color: #e9bf06;"></i></div>
-              <h4 class="title"><a href="">Majelis Taklim</a></h4>
-              <p class="description">MTKI Bulanan dan MT. Pengurus DKM Bulanan</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="100">
-            <div class="box">
-              <div class="icon"><i class="ion-ios-paper-outline" style="color: seagreen;"></i></div>
-              <h4 class="title"><a href="">Pendidikan Islam</a></h4>
-              <p class="description">TPQ Anak-anak (sore hari) & Forum Halaqoh Qur'an (FHQ)</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="200">
-            <div class="box">
-              <div class="icon"><i class="ion-ios-medkit-outline" style="color: rgb(219, 84, 84);"></i></div>
-              <h4 class="title"><a href="{{ route('upj.index')}}">Unit Pelayanan Jenazah</a></h4>
-              <p class="description">Untuk membantu warga muslim komplek Puri Gading dan sekitarnya yang mengalami musibah kematian</p>
+              <div class="icon"><i class="fa fa-ambulance" aria-hidden="true" style="color: #039ea3"></i></div>
+              <h4 class="title"><a href="">Layanan Saranan & Prasarana</a></h4>
+              <div class="description">
+                <ol>
+                  <li>Pelayanan Penjemputan Jenazah</li>
+                  <li>Pelayanan Pemandian Jenazah</li>
+                  <li>Pelayanan Pengkafani Jenazah</li>
+                  <li>Pelayanan Sholat Jenazah di
+                    masjid/rumah</li>
+                  <li>Pelayanan antar jenazah ke pemakaman
+                    terdekat</li>
+                  <li>Pelayanan antar jenazah keluar kota*</li>
+                </ol>
+              </div>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="100">
             <div class="box">
-              <div class="icon"><i class="ion-ios-medkit-outline" style="color:  rgb(170, 46, 46);"></i></div>
-              <h4 class="title"><a href="">Donor Darah</a></h4>
-              <p class="description">Prosedur yang dijalankan oleh PMI dalam pengelolahan darah adalah untuk menghasilkan darah yang aman bagi pasien yang harus diselamatkan </p>
+              <div class="icon"><i class="fa fa-suitcase" aria-hidden="true" style="color: #073b4c"></i></div>
+              <h4 class="title"><a href="">Layanan Kelola Manajemen Profesional</a></h4>
+              <div class="description">
+                <ol>
+                  <li>Pengurus unit pelayanan yang terlatih
+                  </li>
+                  <li>Pelayanan pendaftaran peserta</li>
+                  <li>Pelayanan darurat 24 jam
+                  </li>
+                  <li>Pelayanan koordinasi pemakaman
+                  </li>
+                  <li>Pelayanan koordinasi rumah sakit</li>
+                  <li>LPJ berkala</li>
+                </ol>
+              </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="200">
+
+          <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="100">
             <div class="box">
-              <div class="icon"><i class="ion-ios-information-outline" style="color: #4680ff;"></i></div>
-              <h4 class="title"><a href="">Dukungan kami</a></h4>
-              <p class="description">Konsultasi, Berwakaf dan Pengislaman</p>
+              <div class="icon"><i class="fa fa-users" aria-hidden="true" style="color: #ef476f"></i></div>
+              <h4 class="title"><a href="">Layanan Petugas Yang Baik
+              </a></h4>
+              <div class="description">
+                <ol>
+                  <li>Petugas jenazah yang terlatih</li>
+                  <li>Petugas jenazah yang dapat menjaga
+                    kerahasian</li>
+                  <li> Petugas jenazah yang terdiri dari tim
+                    Ikhwan dan Akwat</li>
+                  <li>Pelayanan Imam sholat jenazah,doa dll</li>
+                  <li>Pelayanan tahlilan
+                  </li>
+                </ol>
+              </div>
             </div>
           </div>
+
+          
+
+          <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="100">
+            <div class="box">
+              <div class="icon"><i class="fa fa-money" aria-hidden="true" style="color: #118ab2"></i></div>
+              <h4 class="title"><a href="">Layanan Kelola Dana Kematian</a></h4>
+              <div class="description">
+                <ol>
+                  <li>Pelayanan Paket Keluarga anggota</li>
+                  <li>Pelayanan Paket Individu anggota</li>
+                  <li>Pelayanan Paket Individu tamu/pendatang</li>
+                  <li>Kartu anggota</li>
+                  <li>Asuransi Tabungan Kematian (Asyki)</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          
 
         </div>
 

@@ -79,14 +79,14 @@ class CheckoutController extends Controller
         }
 
         $this->validate($request, [
-            'alamat' => 'required|max:60',
+            'alamat' => 'required|max:255',
             'telepon' => 'required|string',
             'pekerjaan' => 'string|max:30',
             'no_kk' => 'required|string|unique:user_details,no_kk',
-            'scan_ktp' => 'required|image',
-            'scan_kk' => 'required|image',
+            'scan_ktp' => 'required|image|max:1000',
+            'scan_kk' => 'required|image|max:1000',
             'tempat_lahir' => 'required|string|max:255',
-            'tanggal_lahir' => 'required|date',
+            'tanggal_lahir' => 'required|date|nullable|date_format:Y-m-d|before:today',
             'nik' => 'required|string|max:255|unique:user_families,nik'
 
         ]);
@@ -161,9 +161,9 @@ class CheckoutController extends Controller
         $data = $request->all();
 
         $this->validate($request, [
-            'name' => 'required|max:30',
-            'tempat_lahir' => 'required|string|max:255',
-            'tanggal_lahir' => 'required|date',
+            'name' => 'required|max:255',
+            'tempat_lahir' => 'required|string|max:100',
+            'tanggal_lahir' => 'required|date|nullable|date_format:Y-m-d|before:today',
             'nik' => 'required|string|max:255|unique:user_families,nik'
         ]);
 

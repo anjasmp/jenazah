@@ -754,7 +754,6 @@ tbody td h4 {
     text-align: center;
     margin: auto;
     font-size: 15px;
-    padding-bottom: 60px;
     color: #556877;
     width: 50%;
 }
@@ -766,7 +765,19 @@ tbody td h4 {
     #headerIntro p {
         margin: auto;
         font-size: 15px;
-        padding-bottom: 150px;
+        color: #556877;
+        width: 100%;
+        text-decoration: none;
+    }
+}
+
+@media (max-width: 993px) {
+    #headerIntro h3 {
+        font-size: 30px;
+    }
+    #headerIntro p {
+        margin: auto;
+        font-size: 15px;
         color: #556877;
         width: 100%;
         text-decoration: none;
@@ -781,6 +792,21 @@ tbody td h4 {
         margin: auto;
         font-size: 15px;
         padding-bottom: 150px;
+        color: #556877;
+        width: 100%;
+        text-decoration: none;
+    }
+}
+
+@media (max-width: 567px) {
+    #headerIntro h3 {
+        font-size: 20px;
+        margin-bottom: -100px;
+        margin-top: 10px;
+    }
+    #headerIntro p {
+        margin: auto;
+        font-size: 15px;
         color: #556877;
         width: 100%;
         text-decoration: none;

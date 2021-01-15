@@ -11,6 +11,12 @@
 
 @include('user.homepage.pelayananjenazah')
 
+<hr style="width: 40%; margin-bottom: -100px; margin-top: 100px;"/>
+
+
+
+@include('user.homepage.services')
+
 
 <hr style="width: 40%; margin-top: 100px; margin-bottom: 100px"/>
 

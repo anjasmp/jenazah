@@ -172,11 +172,11 @@ class MemberController extends Controller
     {
         $this->validate($request, [
             'nama_ayah' => 'required|string',
-            'tanggal_wafat' => 'date',
-            'waktu_wafat' => 'date_format:H:i',
-            'tempat_wafat' => 'string',
-            'tempat_pemakaman' => 'string',
-            'kk_atau_ktp'  => 'image',
+            'tanggal_wafat' => 'required|date|nullable|date_format:Y-m-d',
+            'waktu_wafat' => 'date_format:H:i|before:tomorrow',
+            'tempat_wafat' => 'required|string',
+            'tempat_pemakaman' => 'required|string',
+            'kk_atau_ktp'  => 'required|image|max:1000',
             'userfamily_status' => 'string'
 
         ]);

@@ -35,27 +35,28 @@
         </div>
         <div class="form-group">
             <label for="nama">Nama Ayah Alm</label>
-        <input type="text" class="form-control" name="nama_ayah" placeholder="Nama Ayah Alm" value="">
+        <input type="text" class="form-control" name="nama_ayah" value="{{ old('nama_ayah') }}" placeholder="Nama Ayah Alm" >
         </div>
         <div class="form-group">
             <label for="title">Tanggal Wafat</label>
-            <input type="date" name="tanggal_wafat" id="date" class="form-control" style="width: 100%; display: inline;">
+            <input type="date" name="tanggal_wafat" id="date" value="{{ old('tanggal_wafat') }}" class="form-control" style="width: 100%; display: inline;">
         </div>
         <div class="form-group">
             <label for="title">Jam Wafat</label>
-            <input type="time" class="form-control" name="waktu_wafat" placeholder="Jam Wafat" value="">
+            <input type="time" class="form-control" name="waktu_wafat" value="{{ old('waktu_wafat') }}" placeholder="Jam Wafat" >
         </div>
         <div class="form-group">
             <label for="title">Tempat Wafat </label>
-        <input type="text" class="form-control" name="tempat_wafat" placeholder="Tempat Wafat" value="">
+        <input type="text" class="form-control" name="tempat_wafat" value="{{ old('tempat_wafat') }}" placeholder="Tempat Wafat" >
         </div>
         <div class="form-group">
             <label for="title">Tempat Pemakaman</label>
-        <input type="text" class="form-control" name="tempat_pemakaman" placeholder="Tempat Pemakanan" value="">
+        <input type="text" class="form-control" name="tempat_pemakaman" value="{{ old('tempat_pemakaman') }}"  placeholder="Tempat Pemakanan" >
         </div>
         <div class="form-group">
             <label for="title">Upload KTP atau KK</label>
-        <input type="file" class="form-control" name="kk_atau_ktp" placeholder="Upload Scan KK atau KTP" value="">
+            <p style="margin-bottom: -1px; color: gray; font-size: 80%">Image, Size Max:1Mb</p>
+        <input type="file" class="form-control" name="kk_atau_ktp" value="{{ old('kk_atau_ktp') }}" placeholder="Upload Scan KK atau KTP" >
         </div>
         <button type="submit" class="btn btn-primary btn-block">Save</button>
     </form>

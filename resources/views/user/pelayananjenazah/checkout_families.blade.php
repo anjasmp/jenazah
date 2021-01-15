@@ -80,6 +80,7 @@
                       id="name"
                       required
                       placeholder="Nama (sesuai KK)"
+                      value="{{ old('name') }}"
                     />
 
                     <label class="sr-only" for="nik"
@@ -93,6 +94,7 @@
                         id="nik"
                         required
                         placeholder="NIK"
+                        value="{{ old('nik') }}"
                       />
                     </div>
                    
@@ -108,6 +110,7 @@
                         id="tempatLahir"
                         required
                         placeholder="Tempat Lahir"
+                        value="{{ old('tempat_lahir') }}"
                       />
                     </div>
                     <label class="sr-only" for="tanggalLahir"
@@ -121,6 +124,7 @@
                         id="tanggalLahir"
                         required
                         placeholder="Tanggal Lahir"
+                        value="{{ old('tanggal_lahir') }}"
                       />
                     </div>
 

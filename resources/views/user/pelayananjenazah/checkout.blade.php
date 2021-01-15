@@ -35,11 +35,10 @@
               </div>
               @endif
 
-                
 
                 <p>Nama : <span style="font-weight: bold; color: #039ea3">{{ Auth::user()->name }}</span> </p>
                 <p>Email : <span style="font-weight: bold; color: #039ea3">{{ Auth::user()->email }}</span> </p>
-                
+
                 <form action="{{ route('product.checkout-create', $item->id)}}" method="post" id="authForm" enctype="multipart/form-data">
                   @csrf
 
@@ -49,6 +48,7 @@
                     type="text"
                     class="form-control mb-2 mr-sm-2"
                     id="inputTempatLahir"
+                    value="{{ old('tempat_lahir') }}"
                   />
 
                   <p style="margin-bottom: -1px">Tanggal Lahir</p>
@@ -57,6 +57,7 @@
                     type="date"
                     class="form-control mb-2 mr-sm-2"
                     id="inputTanggalLahir"
+                    value="{{ old('tanggal_lahir') }}"
                   />
 
                   <p style="margin-bottom: -1px">Nomor Induk Kependudukan</p>
@@ -65,16 +66,16 @@
                     type="number"
                     class="form-control mb-2 mr-sm-2"
                     id="inputNik"
+                    value="{{ old('nik') }}"
                   />
 
                   <p style="margin-bottom: -1px">Alamat</p>
-                  <textarea 
+                  <textarea
                   name="alamat"
                   class="form-control mb-2 mr-sm-2"
-                  id="alamat" 
+                  id="alamat"
                   cols="10"
-                  rows="3">
-                </textarea>
+                  rows="3">{{ old('alamat') }}</textarea>
 
                 <p style="margin-bottom: -1px">Telepon</p>
                   <input
@@ -82,6 +83,7 @@
                     type="number"
                     class="form-control mb-2 mr-sm-2"
                     id="inputTelepon"
+                    value="{{ old('telepon') }}"
                   />
 
                   <p style="margin-bottom: -1px">Pekerjaan</p>
@@ -90,6 +92,7 @@
                     type="text"
                     class="form-control mb-2 mr-sm-2"
                     id="inputPekerjaan"
+                    value="{{ old('pekerjaan') }}"
                   />
                   
                   <p style="margin-bottom: -1px">Nomor Kartu Keluarga</p>
@@ -98,22 +101,27 @@
                     type="number"
                     class="form-control mb-2 mr-sm-2"
                     id="inputNoKk"
+                    value="{{ old('no_kk') }}"
                   />
 
                   <p style="margin-bottom: -1px">Scan kartu Tanda Penduduk</p>
+                  <p style="margin-bottom: -1px; color: gray; font-size: 80%">Image, Size Max:1Mb</p>
                   <input
                   name="scan_ktp"
                     type="file"
                     class="form-control mb-2 mr-sm-2"
                     id="inputScanKTP"
+                    value="{{ old('scan_ktp') }}"
                   />
 
                   <p style="margin-bottom: -1px">Scan Kartu Keluarga</p>
+                  <p style="margin-bottom: -1px; color: gray; font-size: 80%">Image, Size Max:1Mb</p>
                   <input
                   name="scan_kk"
                     type="file"
                     class="form-control mb-2 mr-sm-2"
                     id="inputScanKk"
+                    value="{{ old('scan_kk') }}"
                   />
 
                   <hr / style="margin-bottom: 30px; margin-top: 60px">
