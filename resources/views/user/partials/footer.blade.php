@@ -15,10 +15,12 @@
             </div>
 
             <div class="col-lg-3 col-md-6 footer-links">
-              <h4>Useful Links</h4>
+              <h4>Kontak Kordinator</h4>
               <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="https://wa.me/message/EMV4ZHEQ3PB7M1">Konfirmasi Pembayaran</a></li>
+                <li><span style="color: white; font-weight: bold">Rothman Hadi (Alam Raya 2 & sekitarnya)</span> <br> <a href="#">+62 812 9739 6789</a></li>
+                <li><span style="color: white; font-weight: bold">Anaz Jamil (Alam Raya 1 & sekitarnya)</span> <br> <a href="#">+62 815 7474 2323</a></li>
+                <li><span style="color: white; font-weight: bold">Kusmanto (PGR, Vila Carita & sekitarnya)</span> <br> <a href="#">+62 878 8023 2737</a></li>
+                <li><span style="color: white; font-weight: bold">Benny Martono (Blok A, Blok B, Vila Besakih, Vila Ubud & sekitarnya)</span> <br> <a href="#">+62 821 2303 1972</a></li>
               </ul>
             </div>
 

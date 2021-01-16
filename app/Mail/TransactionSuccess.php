@@ -33,8 +33,8 @@ class TransactionSuccess extends Mailable
     public function build()
     {
         return $this
-        ->from('support@upj.com', 'Support UPJ')
-        ->subject('Keanggotaan | UPJ Masjid Baitul Haq')
+        ->from('admin@upjmasjidbaitulhaq.xyz', 'Admin UPJ')
+        ->subject('Keanggotaan UPJ')
         ->view('email.transaction-success');
     }
 }
