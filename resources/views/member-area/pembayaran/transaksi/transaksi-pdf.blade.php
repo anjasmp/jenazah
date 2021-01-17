@@ -235,8 +235,12 @@
                     <div class="col invoice-to">
                         <div class="text-gray-light">INVOICE TO:</div>
                         <h2 class="to">{{ $items->user->name }}</h2>
+
+                        @if ($items->transaction_status == 'SUCCESS')
                         <div class="address">{{ $items->user_detail->alamat }}</div>
                         <div class="email">{{ $items->user->email }}</div>
+                        @endif
+                        
                     </div>
                     <div class="col invoice-details">
                         <h1 class="invoice-id">{{ $items->no_invoice }}</h1>
