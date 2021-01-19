@@ -125,7 +125,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card border-right">
+            {{-- <div class="card border-right">
                 <div class="card-body">
                     <div class="d-flex d-lg-flex d-md-block align-items-center">
                         <div>
@@ -139,7 +139,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
            
         </div>
 

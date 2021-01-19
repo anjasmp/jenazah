@@ -115,15 +115,15 @@ class PelayananController extends Controller
 
 
         // GRAFIK INFO
-        $anggota = UserFamilies::Where('user_details_id', Auth::id())
+        $anggota = UserFamilies::Where('user_details_id', Auth::user()->user_detail->id)
             ->where(function ($query) {
                 $query->where('userfamily_status', 'ACTIVE');
         })->count();
 
-        $service = Service::Where('transactions_id', Auth::id())
-            ->where(function ($query) {
-                $query->where('service_status', 'ACCEPTED');
-        })->count();
+        // $service = Service::Where('user_families_id', Auth::user()->user_detail->id)
+        //     ->where(function ($query) {
+        //         $query->where('service_status', 'ACCEPTED');
+        // })->count();
 
        
         // return $masa_aktif;
@@ -131,7 +131,6 @@ class PelayananController extends Controller
         return view('member-area.pelayanan.home',[
             'items' => $items,
             'anggota' => $anggota,
-            'service' => $service,
             'masa_aktif' => $masa_aktif,
             'end_transaction' => $end_transaction
         ]);
@@ -204,8 +203,8 @@ class PelayananController extends Controller
     {
         $this->validate($request, [
             'nama_ayah' => 'required|string',
-            'tanggal_wafat' => 'required|date|nullable|date_format:Y-m-d',
-            'waktu_wafat' => 'date_format:H:i|before:tomorrow',
+            'tanggal_wafat' => 'required|date|nullable|date_format:Y-m-d|before:tomorrow',
+            'waktu_wafat' => 'date_format:H:i',
             'tempat_wafat' => 'required|string',
             'tempat_pemakaman' => 'required|string',
             'kk_atau_ktp'  => 'required|image|max:1000',

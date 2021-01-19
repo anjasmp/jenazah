@@ -46,7 +46,7 @@ class PostController extends Controller
             'title' => 'required',
             'category_id' => 'required',
             'content' => 'required',
-            'image' => 'required'
+            'image' => 'required|image|max:1000'
         ]);
 
         $image = $request->image;

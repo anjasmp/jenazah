@@ -54,9 +54,12 @@
 
 
                 @else
-                
+
+                @unlessrole('admin')
                 <li><a href="{{ route('pelayanan.home') }}" class="btn btn-primary" style="border-radius: 50px; margin-top: 5px; ">Member Area</a></li>
-              
+                @else
+                @endunlessrole
+                
                 <li class="drop-down"><a href="#"><img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}" alt="user"
                     class="rounded-circle" width="30"></a>
                     <ul>
