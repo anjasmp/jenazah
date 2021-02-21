@@ -5,8 +5,7 @@
 <section id="introcontent" class="section-bg-content">
   <div class="container" data-aos="fade-up">
 
-    
-
+  @if (count($carousel) > 0)
     <div class="row justify-content-center">
 
       <div class="col" data-aos="zoom-in" data-aos-delay="100">
@@ -31,6 +30,51 @@
         </div>
       </div>
     </div>
+@elseif (count($carousel) <= 0)
+     <div class="row justify-content-center">
+
+      <div class="col" data-aos="zoom-in" data-aos-delay="100">
+        <div class="box">
+          <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner" id="slide">
+    <div class="carousel-item active">
+      <img src="{{ asset ('user/assets/img/slide.jpeg')}}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{{ asset ('user/assets/img/slide22.jpeg')}}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{{ asset ('user/assets/img/slide3.jpeg')}}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+ <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+</div>
+         
+        </div>
+      </div>
+    </div>
+@else
+    I don't have any image!
+@endif
+
+    {{-- @if ($carousel == true)
+       
+ 
+    @else if
+       
+    @endif --}}
+
+    
+    
+
+    
 
     <header id="headerIntro">
       {{-- <h3 style="margin-top: 20px">Jadwal Sholat</h3>
